@@ -55,7 +55,7 @@ module TimeTaskOverrun
                   end
             elsif item.total_spent_hours > 0
               link = project_time_entries_path(item.project, :issue_id => "~#{item.id}")
-              link_to( item.total_spent_hours, link)
+              link_to( format_hours(item.total_spent_hours), link)
             end
           when :attachments
             value.to_a.map { |a| format_object(a) }.join(" ").html_safe
