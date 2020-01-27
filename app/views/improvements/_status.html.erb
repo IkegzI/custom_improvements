@@ -1,0 +1,22 @@
+<script>
+  $(document).ready(
+  )
+
+  function edit_attr() {
+      document.getElementsByName('commit')[1].setAttribute('onfocus', 'status_edit');
+      document.getElementById('issue_status_id').setAttribute('onchange', 'status_edit')
+  }
+
+    function edit_quest(){
+        document.getElementById('issue_status_id').setAttribute('edits', 'yes');
+    }
+
+  function status_edit(){
+      if (document.getElementById('issue_status_id').firstChild.hasAttribute('selected')) {
+          if (document.getElementById('issue_status_id').getAttribute('edits') != "yes") {
+              document.getElementById('issue_status_id').getElementsByTagName('option')[0].removeAttribute('selected');
+              document.getElementById('issue_status_id').getElementsByTagName('option')[1].setAttribute('selected', 'selected')
+          }
+      }
+  }
+</script>

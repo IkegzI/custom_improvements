@@ -26,6 +26,6 @@ Redmine::Plugin.register :custom_improvements do
     #IssuesController.send(:include, Status::Patches::IssuesControllerPatch)
   end
 
-  menu :admin_menu, :sunstrike_redmine_plugin_custom_improvements, {controller: 'settings', action: 'plugin', id: 'sunstrike_redmine_plugin_custom_improvements'}, caption: :label_improvements
+  menu :admin_menu, :custom_improvements, {controller: 'settings', action: 'plugin', id: 'custom_improvements'}, caption: :label_improvements
 
 end
