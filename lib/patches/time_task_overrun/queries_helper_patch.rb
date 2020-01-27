@@ -52,8 +52,9 @@ module TimeTaskOverrun
                   if val != 0
                     link_to('(' + (val > 0 ? '+' : '') + format_hours(val) + ')', link, style: (val < 0 ? 'color:#00cc00' : 'color:#cc0000'))
                   end
-            else
-              label_tag(:message, "нет данных")
+            elsif item.total_spent_hours > 0
+              link = project_time_entries_path(item.project, :issue_id => "~#{item.id}")
+              link_to( item.total_spent_hours, link)
             end
           when :attachments
             value.to_a.map { |a| format_object(a) }.join(" ").html_safe
