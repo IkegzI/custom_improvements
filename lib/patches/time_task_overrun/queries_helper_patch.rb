@@ -40,7 +40,7 @@ module TimeTaskOverrun
           when :spent_hours
             link_to(format_hours(value), project_time_entries_path(item.project, :issue_id => "#{item.id}")) if value > 0
           when :total_spent_hours
-            if item.estimated_hours.to_i > 0 && item.total_spent_hours.to_i > 0
+            if item.estimated_hours.to_f > 0 && item.total_spent_hours.to_f > 0
               link = project_time_entries_path(item.project, :issue_id => "~#{item.id}")
               val = (
               if (item.estimated_hours.nil? || item.total_spent_hours.nil?)

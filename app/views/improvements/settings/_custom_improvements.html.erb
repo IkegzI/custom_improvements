@@ -1,5 +1,4 @@
-<%# @settings = ActionController::Parameters.new(@settings) unless Rails.version >= '5.2' %>
-<%# binding.pry %>
-<%= render_tabs  [{name: 'overrun', partial: 'improvements/settings/overrun', label: :label_settings_overrun },
-                  {name: 'status', partial: 'improvements/settings/overrun', label: :label_settings_status }] %>
+
+<%= render_tabs  [{name: 'overrun', partial: 'improvements/settings/overrun', label: :label_settings_overrun }]%>
+<!--{name: 'status', partial: 'improvements/settings/overrun', label: :label_settings_status }] -->
 

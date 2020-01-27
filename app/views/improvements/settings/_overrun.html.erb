@@ -1,2 +1,17 @@
 <h3>Настройка</h3>
-<p>Здесь будут настройки</p>
+
+<p>Включен
+<%#= check_box_tag('settings[improvements_disable_overrun]', checked_value = "0", unchecked_value = "1") %>
+<p>
+<%=  hidden_field_tag 'settings[id]', 'CustomImprovements' %>
+  <p>
+    <%= label_tag 'Да' %>
+  <%= radio_button_tag 'settings[improvements_disable_overrun]', '0', :class => "radio-buttons" %>
+  </p>
+<p>
+  <%= label_tag 'Нет' %>
+  <%= radio_button_tag 'settings[improvements_disable_overrun]', '1', :class => "radio-buttons" %>
+</p>
+
+</p>
+</p>
