@@ -20,7 +20,7 @@ module TimeTaskOverrun
           end.compact
           save_settings if @savers == 1
           @savers += 1
-          if CustomImprovements.load_settings[:improvements_disable_overrun] == 0
+          if CustomImprovements.load_settings[:improvements_disable_overrun].to_i == 0
             cols.insert(3, available_columns.find { |col| col.name == :total_spent_hours })
             cols.insert(3, available_columns.find { |col| col.name == :estimated_hours })
           end

@@ -4,14 +4,9 @@
 <%#= check_box_tag('settings[improvements_disable_overrun]', checked_value = "0", unchecked_value = "1") %>
 <p>
 <%=  hidden_field_tag 'settings[id]', 'CustomImprovements' %>
-  <p>
-    <%= label_tag 'Да' %>
-  <%= radio_button_tag 'settings[improvements_disable_overrun]', '0', :class => "radio-buttons" %>
-  </p>
-<p>
-  <%= label_tag 'Нет' %>
-  <%= radio_button_tag 'settings[improvements_disable_overrun]', '1', :class => "radio-buttons" %>
-</p>
+
+  <%= select_tag('settings[improvements_disable_overrun]',
+                 options_for_select([['да', 0], ['нет', 1]]), {include_blank: true, selected: CustomImprovements.load_settings[:improvements_disable_overrun].to_i}) %>
 
 </p>
 </p>

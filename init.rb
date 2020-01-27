@@ -19,9 +19,11 @@ Redmine::Plugin.register :custom_improvements do
   object_to_prepare.to_prepare do
     require_relative "#{path}/#{tor}/query_patch.rb"
     require_relative "#{path}/#{tor}/queries_helper_patch.rb"
+    require_relative "#{path}/#{tor}/settings_controller_patch.rb"
     require_relative "#{path}/#{st}/time_entries_patch.rb"
     Query.send(:include, TimeTaskOverrun::Patches::QueryPatch)
     QueriesHelper.send(:include, TimeTaskOverrun::Patches::QueriesHelperPatch)
+    SettingsController.send(:include, TimeTaskOverrun::Patches::SettingsControllerPatch)
     #TimelogController.send(:include, Status::Patches::TimelogControllerPatch)
     #IssuesController.send(:include, Status::Patches::IssuesControllerPatch)
   end

@@ -39,5 +39,5 @@ remove_mypage: 0
 remove_news: 0
 wiki_pdf_remove_attachments: 0
 wiki_pdf_remove_title: 0
-improvements_disable_overrun: 0
+improvements_disable_overrun: '0'
 improvements_disable_status: 0
