@@ -50,8 +50,9 @@ module TimeTaskOverrun
                 rez.round(3)
               end)
               link_to(format_hours(value), link) +
-                  if val != 0
-                    link_to('(' + (val > 0 ? '+' : '') + "#{format_hours(val).to_f.round(3)}" + ')', link, style: (val < 0 ? 'color:#00cc00' : 'color:#cc0000'))
+                  if val > 0
+                    # link_to('(' + (val > 0 ? '+' : '') + "#{format_hours(val).to_f.round(3)}" + ')', link, style: (val < 0 ? 'color:#00cc00' : 'color:#cc0000'))
+                    link_to('(' + (val > 0 ? '+' : '') + "#{format_hours(val).to_f.round(3)}" + ')', link, style: 'color:#cc0000')
                   end
             elsif item.total_spent_hours > 0
               link = project_time_entries_path(item.project, :issue_id => "~#{item.id}")
