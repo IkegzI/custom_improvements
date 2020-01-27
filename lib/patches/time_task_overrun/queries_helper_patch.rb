@@ -36,9 +36,9 @@ module TimeTaskOverrun
                         value.to_s(item) { |other| link_to_issue(other, :subject => false, :tracker => false) }.html_safe,
                         :id => value.css_classes_for(item))
           when :hours, :estimated_hours
-            format_hours(value)
+            format_hours(value) if value.to_i > 0
           when :spent_hours
-            link_to(format_hours(value), project_time_entries_path(item.project, :issue_id => "#{item.id}")) if value > 0
+              link_to(format_hours(value), project_time_entries_path(item.project, :issue_id => "#{item.id}")) if value > 0
           when :total_spent_hours
             if item.estimated_hours.to_f > 0 && item.total_spent_hours.to_f > 0
               link = project_time_entries_path(item.project, :issue_id => "~#{item.id}")
@@ -56,7 +56,7 @@ module TimeTaskOverrun
                   end
             elsif item.total_spent_hours > 0
               link = project_time_entries_path(item.project, :issue_id => "~#{item.id}")
-              link_to( format_hours(item.total_spent_hours), link)
+              link_to(format_hours(item.total_spent_hours), link)
             end
           when :attachments
             value.to_a.map { |a| format_object(a) }.join(" ").html_safe
@@ -64,8 +64,6 @@ module TimeTaskOverrun
             format_object(value)
           end
         end
-
-
 
 
         # отел так, но...
