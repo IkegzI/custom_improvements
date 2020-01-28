@@ -1,12 +1,14 @@
 #sunstrike_settnigs_div {
-    padding: 0 0 15px 30px;
+    padding: 10px 0 15px 30px;
+    border: #2a5a8a 1px solid;
+    margin: 10px;
 }
 
 #sunstrike_settnigs_title {
-    width: 160px;
+    width: 60%;
     display: inline-block;
 }
 #sunstrike_settnigs_select {
-    width: 160px;
+    width: 10%;
     display: inline-block;
 }
