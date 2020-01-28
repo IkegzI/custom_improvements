@@ -1,28 +1,42 @@
 <%= stylesheet_link_tag "improvements", plugin: "custom_improvements" %>
 <h3>Настройка</h3>
-<div id="sunstrike_settnigs_div">
-  <div id="sunstrike_settnigs_title">
-    Перерасход времени
-  </div>
-  <div id="sunstrike_settnigs_title"><%= hidden_field_tag 'settings[id]', 'CustomImprovements' %>
-    <%= hidden_field_tag 'settings[id_def]', 'overrun' %>
 
-    <%= select_tag('settings[improvements_disable_overrun]',
-                   options_for_select(ON_OFF_CONST,
-                                      CustomImprovements.load_settings[:improvements_disable_overrun].to_i)) %>
+<div id="sunstrike_settnigs_div">
+  <div>
+    <div id="sunstrike_settnigs_title">
+      Показывать перерасход часов в списке задач
+    </div>
+    <div id="sunstrike_settnigs_select">
+      <%= hidden_field_tag 'settings[id_def]', 'overrun' %>
+
+      <%= select_tag('settings[improvements_disable_overrun]',
+                     options_for_select(ON_OFF_CONST,
+                                        CustomImprovements.load_settings[:improvements_disable_overrun].to_i)) %>
+    </div>
+  </div>
+  <div>
+    <h4 id="sunstrike_settnigs_h4">Описание: </h4>
+    Добавить в колонке Трудозатраты данные о превышении эстимейта.
   </div>
 </div>
-<div id="sunstrike_settnigs_div">
-  <div id="sunstrike_settnigs_title">
-    Автосмена статуса
-  </div>
-  <div id="sunstrike_settnigs_select">
-    <%= hidden_field_tag 'settings[id]', 'CustomImprovements' %>
-    <%= hidden_field_tag 'settings[id_def]', 'status' %>
 
-    <%= select_tag('settings[improvements_disable_status]',
-                   options_for_select(ON_OFF_CONST,
-                                      CustomImprovements.load_settings[:improvements_disable_status].to_i)) %>
+<div id="sunstrike_settnigs_div">
+  <div>
+    <div id="sunstrike_settnigs_title">
+      Автоматически менять статус задачи с “Новый” на “В работе” при внесении трудозатрат
+    </div>
+    <div id="sunstrike_settnigs_select">
+      <%= hidden_field_tag 'settings[id]', 'CustomImprovements' %>
+      <%= hidden_field_tag 'settings[id_def]', 'status' %>
+
+      <%= select_tag('settings[improvements_disable_status]',
+                     options_for_select(ON_OFF_CONST,
+                                        CustomImprovements.load_settings[:improvements_disable_status].to_i)) %>
+    </div>
+  </div>
+  <div>
+    <h4 id="sunstrike_settnigs_h4">Описание: </h4>
+    Автоматически менять статус тикета с “Новый” на статус “В работе”, когда сотрудник добавил трек часов в задачу.
   </div>
 </div>
 
