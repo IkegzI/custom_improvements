@@ -8,7 +8,7 @@
         }
     );
     function status_edit() {
-        if (document.getElementById('time_entry_activity_id').firstChild.hasAttribute('selected') != true) {
+        if (document.getElementById('time_entry_activity_id').value != "" ) {
             if (document.getElementById('time_entry_hours').value != "") {
                 if (document.getElementById('issue_status_id').hasAttribute('flag')) {
                     document.getElementById('issue_status_id').selectedIndex = 1;
