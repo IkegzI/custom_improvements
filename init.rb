@@ -24,7 +24,7 @@ Redmine::Plugin.register :custom_improvements do
     Query.send(:include, TimeTaskOverrun::Patches::QueryPatch)
     QueriesHelper.send(:include, TimeTaskOverrun::Patches::QueriesHelperPatch)
     SettingsController.send(:include, TimeTaskOverrun::Patches::SettingsControllerPatch)
-    #TimelogController.send(:include, Status::Patches::TimelogControllerPatch)
+    TimelogController.send(:include, Status::Patches::TimelogControllerPatch)
     #IssuesController.send(:include, Status::Patches::IssuesControllerPatch)
   end
 
