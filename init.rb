@@ -27,7 +27,7 @@ Redmine::Plugin.register :custom_improvements do
     TimelogController.send(:include, Status::Patches::TimelogControllerPatch)
     #IssuesController.send(:include, Status::Patches::IssuesControllerPatch)
   end
-
+  ON_OFF_CONST = [['Включен', 0], ['Выключен', 1]]
   menu :admin_menu, :custom_improvements, {controller: 'settings', action: 'plugin', id: 'custom_improvements'}, caption: :label_improvements
 
 end

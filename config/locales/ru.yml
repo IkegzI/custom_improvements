@@ -1,5 +1,6 @@
 ru:
-  label_improvements: Плагины SunStrike
+  label_improvements: 'Плагины SunStrike'
   label_settings_menu:    "Menu"
   label_settings_overrun: "Перерасход времени"
   label_settings_status:  "Автоматически менять статус задачи с “Новый” на “В работе” при внесении трудозатрат"
+  label_settings_control: "Управление модулями"
