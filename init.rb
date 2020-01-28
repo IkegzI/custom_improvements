@@ -1,18 +1,22 @@
 require 'redmine'
 require_dependency 'custom_improvements'
 Redmine::Plugin.register :custom_improvements do
-  name 'Custom Improvements plugin'
-  author 'Author name'
-  description 'This is a plugin for Redmine'
-  version '0.0.1'
-  url 'http://example.com/path/to/plugin'
-  author_url 'http://example.com/about'
+  name 'SunStrike Redmine Custom Improvements'
+  author 'Pecherskyi Alexei'
+  description 'Plugin is developed to simplify user interaction.'
+  version '0.2.6'
+  url 'http://sunstrikestudios.com'
+  # author_url 'http://example.com/about'
+
+  #constants
+  ON_OFF_CONST = [['Включен', 0], ['Выключен', 1]]
+
   default_settings = CustomImprovements.load_settings
   settings(default: default_settings, partial: 'improvements/settings/custom_improvements')
-
-
   object_to_prepare = Rails.configuration
+
   #patchs connection
+  # 
   tor = 'time_task_overrun'
   st = 'status'
   path = './lib/patches'
@@ -27,7 +31,6 @@ Redmine::Plugin.register :custom_improvements do
     TimelogController.send(:include, Status::Patches::TimelogControllerPatch)
     #IssuesController.send(:include, Status::Patches::IssuesControllerPatch)
   end
-  ON_OFF_CONST = [['Включен', 0], ['Выключен', 1]]
   menu :admin_menu, :custom_improvements, {controller: 'settings', action: 'plugin', id: 'custom_improvements'}, caption: :label_improvements
 
 end
