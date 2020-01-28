@@ -36,9 +36,9 @@ module TimeTaskOverrun
                         value.to_s(item) { |other| link_to_issue(other, :subject => false, :tracker => false) }.html_safe,
                         :id => value.css_classes_for(item))
           when :hours, :estimated_hours
-            format_hours(value) if value.to_i > 0
+            format_hours(value) if value.to_f > 0
           when :spent_hours
-              link_to(format_hours(value), project_time_entries_path(item.project, :issue_id => "#{item.id}")) if value > 0
+                        link_to(format_hours(value), project_time_entries_path(item.project, :issue_id => "#{item.id}")) if value > 0
           when :total_spent_hours
             if item.estimated_hours.to_f > 0 && item.total_spent_hours.to_f > 0
               link = project_time_entries_path(item.project, :issue_id => "~#{item.id}")
@@ -52,7 +52,7 @@ module TimeTaskOverrun
               link_to(format_hours(value), link) +
                   if val > 0
                     # link_to('(' + (val > 0 ? '+' : '') + "#{format_hours(val).to_f.round(3)}" + ')', link, style: (val < 0 ? 'color:#00cc00' : 'color:#cc0000'))
-                    link_to(' (' + (val > 0 ? '+' : '') + "#{format_hours(val).to_f.round(3)}" + ')', link, style: 'color:#cc0000')
+                    link_to(' (' + (val > 0 ? '+' : '') + "#{format_hours(val)}" + ')', link, style: 'color:#cc0000')
                   end
             elsif item.total_spent_hours > 0
               link = project_time_entries_path(item.project, :issue_id => "~#{item.id}")
