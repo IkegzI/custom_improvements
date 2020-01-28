@@ -38,26 +38,29 @@ module TimeTaskOverrun
           when :hours, :estimated_hours
             format_hours(value) if value.to_f > 0
           when :spent_hours
-                        link_to(format_hours(value), project_time_entries_path(item.project, :issue_id => "#{item.id}")) if value > 0
+                        # link_to(format_hours(value), project_time_entries_path(item.project, :issue_id => "#{item.id}")) if value > 0
+                        #  binding.pry
+                        if item.estimated_hours.to_f > 0 && item.spent_hours.to_f > 0
+                          link = project_time_entries_path(item.project, :issue_id => "~#{item.id}")
+                          val = (
+                          if (item.estimated_hours.nil? || item.spent_hours.nil?)
+                            0
+                          else
+                            rez = (item.estimated_hours - item.spent_hours) * -1
+                            rez.round(3)
+                          end)
+                          link_to(format_hours(value), link) + (
+                              if val > 0
+                                # link_to('(' + (val > 0 ? '+' : '') + "#{format_hours(val).to_f.round(3)}" + ')', link, style: (val < 0 ? 'color:#00cc00' : 'color:#cc0000'))
+                                link_to(' (' + (val > 0 ? '+' : '') + "#{format_hours(val)}" + ')', link, style: 'color:#cc0000')
+                              end)
+                        elsif item.spent_hours > 0
+                          link = project_time_entries_path(item.project, :issue_id => "~#{item.id}")
+                          link_to(format_hours(item.spent_hours), link)
+                        end
           when :total_spent_hours
-            if item.estimated_hours.to_f > 0 && item.total_spent_hours.to_f > 0
-              link = project_time_entries_path(item.project, :issue_id => "~#{item.id}")
-              val = (
-              if (item.estimated_hours.nil? || item.total_spent_hours.nil?)
-                0
-              else
-                rez = (item.estimated_hours - item.total_spent_hours) * -1
-                rez.round(3)
-              end)
-              link_to(format_hours(value), link) +
-                  if val > 0
-                    # link_to('(' + (val > 0 ? '+' : '') + "#{format_hours(val).to_f.round(3)}" + ')', link, style: (val < 0 ? 'color:#00cc00' : 'color:#cc0000'))
-                    link_to(' (' + (val > 0 ? '+' : '') + "#{format_hours(val)}" + ')', link, style: 'color:#cc0000')
-                  end
-            elsif item.total_spent_hours > 0
-              link = project_time_entries_path(item.project, :issue_id => "~#{item.id}")
-              link_to(format_hours(item.total_spent_hours), link)
-            end
+            link_to_if(value > 0, format_hours(value), project_time_entries_path(item.project, :issue_id => "~#{item.id}"))
+
           when :attachments
             value.to_a.map { |a| format_object(a) }.join(" ").html_safe
           else
