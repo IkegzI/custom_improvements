@@ -1,5 +1,5 @@
 require 'redmine'
-
+require_dependency 'custom_improvements'
 Redmine::Plugin.register :custom_improvements do
   name 'Custom Improvements plugin'
   author 'Author name'

@@ -25,7 +25,7 @@ module Status
 
           if @time_entry.save
             binding.pry
-            if @issue.status_id == 1 and CustomImprovements.load_settings[:improvements_disable_status] = 0
+            if @issue.status_id == 1 and CustomImprovements.load_settings[:improvements_disable_status] == 0
               @issue.status_id = 2
               @issue.save
             end

@@ -1,6 +1,6 @@
 module CustomImprovements
 
-  # require_dependency 'improvements/hooks'
+  require_dependency 'hooks/status/hooks'
 
   def save_settings
     path = Dir.pwd + '/plugins/custom_improvements/config/settings.yml'
