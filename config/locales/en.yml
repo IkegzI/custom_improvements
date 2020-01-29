@@ -5,4 +5,4 @@ en:
   activerecord:
     errors:
       messages:
-        is_finish: "No add hours"
+        is_finish: "No add hours. Contact to administrator"

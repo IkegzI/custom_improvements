@@ -37,7 +37,7 @@ module TimeTaskOverrun
           when :hours, :estimated_hours
             format_hours(value) if value.to_f > 0
           when :spent_hours
-                        # link_to(format_hours(value), project_time_entries_path(item.project, :issue_id => "#{item.id}")) if value > 0
+            if CustomImprovements.load_settings[:improvements_disable_overrun].to_i == 0
                         if item.estimated_hours.to_f > 0 && item.spent_hours.to_f > 0
                           link = project_time_entries_path(item.project, :issue_id => "~#{item.id}")
                           val = (
@@ -56,7 +56,10 @@ module TimeTaskOverrun
                           link = project_time_entries_path(item.project, :issue_id => "~#{item.id}")
                           link_to(format_hours(item.spent_hours), link)
                         end
-          when :total_spent_hours
+            else
+              link_to(format_hours(value), project_time_entries_path(item.project, :issue_id => "#{item.id}")) if value > 0
+            end
+              when :total_spent_hours
             link_to_if(value > 0, format_hours(value), project_time_entries_path(item.project, :issue_id => "~#{item.id}"))
 
           when :attachments

@@ -34,6 +34,5 @@ Redmine::Plugin.register :custom_improvements do
     TimeEntry.send(:include, TaskFinish::Patches::TimeEntryPatch)
     #IssuesController.send(:include, Status::Patches::IssuesControllerPatch)
   end
-  menu :admin_menu, :custom_improvements, {controller: 'settings', action: 'plugin', id: 'custom_improvements'}, caption: :label_improvements
 
 end
