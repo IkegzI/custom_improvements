@@ -26,7 +26,6 @@ module TaskFinish
             end
             false
           end
-          binding.pry
           errors.add :issue_id, :is_finish if issue.status_id == 3 and CustomImprovements.load_settings[:improvements_disable_finish] == 0
           errors.add :spent_on, :date_arrived if errors_add_spent_on?(spent_on, :improvements_disable_date)
           errors.add :hours, :invalid if hours && (hours < 0 || hours >= 1000)
