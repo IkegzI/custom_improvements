@@ -1,3 +1,4 @@
 # English strings go here for Rails i18n
 en:
   label_improvements: SunStrike plugins
+  status_task: Status task 'Ended'
