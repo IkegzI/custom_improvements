@@ -25,6 +25,7 @@ module TimeTaskOverrun
               CustomImprovements.load_settings[:improvements_disable_overrun] = setting['improvements_disable_overrun'].to_i
               CustomImprovements.load_settings[:improvements_disable_status] = setting['improvements_disable_status'].to_i
               CustomImprovements.load_settings[:improvements_disable_finish] = setting['improvements_disable_finish'].to_i
+              CustomImprovements.load_settings[:improvements_disable_date] = setting['improvements_disable_date'].to_i
             end
             Setting.send "plugin_#{@plugin.id}=", setting
             flash[:notice] = l(:notice_successful_update)
