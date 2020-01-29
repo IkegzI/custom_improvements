@@ -19,16 +19,19 @@ Redmine::Plugin.register :custom_improvements do
   # 
   tor = 'time_task_overrun'
   st = 'status'
+  tf = 'task_finish'
   path = './lib/patches'
   object_to_prepare.to_prepare do
     require_relative "#{path}/#{tor}/query_patch.rb"
     require_relative "#{path}/#{tor}/queries_helper_patch.rb"
     require_relative "#{path}/#{tor}/settings_controller_patch.rb"
     require_relative "#{path}/#{st}/time_entries_patch.rb"
+    require_relative "#{path}/#{tf}/time_entry_patch.rb"
     Query.send(:include, TimeTaskOverrun::Patches::QueryPatch)
     QueriesHelper.send(:include, TimeTaskOverrun::Patches::QueriesHelperPatch)
     SettingsController.send(:include, TimeTaskOverrun::Patches::SettingsControllerPatch)
     TimelogController.send(:include, Status::Patches::TimelogControllerPatch)
+    TimeEntry.send(:include, TaskFinish::Patches::TimeEntryPatch)
     #IssuesController.send(:include, Status::Patches::IssuesControllerPatch)
   end
   menu :admin_menu, :custom_improvements, {controller: 'settings', action: 'plugin', id: 'custom_improvements'}, caption: :label_improvements

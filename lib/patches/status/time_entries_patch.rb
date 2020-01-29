@@ -13,6 +13,7 @@ module Status
 
       module InstanceMethods
         #add columns run_time and total spend hours
+        #
         def create_ext
           @time_entry ||= TimeEntry.new(:project => @project, :issue => @issue, :user => User.current, :spent_on => User.current.today)
           @time_entry.safe_attributes = params[:time_entry]
@@ -28,6 +29,7 @@ module Status
               @issue.status_id = 2
               @issue.save
             end
+
 
             respond_to do |format|
               format.html {
@@ -55,6 +57,7 @@ module Status
               format.api  { render :action => 'show', :status => :created, :location => time_entry_url(@time_entry) }
             end
           else
+
             respond_to do |format|
               format.html { render :action => 'new' }
               format.api  { render_validation_errors(@time_entry) }

@@ -40,3 +40,23 @@
   </div>
 </div>
 
+<div id="sunstrike_settnigs_div">
+  <div>
+    <div id="sunstrike_settnigs_title">
+      Запрет вносить трудозатраты в завершенные задачи
+    </div>
+    <div id="sunstrike_settnigs_select">
+      <%= hidden_field_tag 'settings[id]', 'CustomImprovements' %>
+      <%= hidden_field_tag 'settings[id_def]', 'finish' %>
+
+      <%= select_tag('settings[improvements_disable_finish]',
+                     options_for_select(ON_OFF_CONST,
+                                        CustomImprovements.load_settings[:improvements_disable_finish].to_i)) %>
+    </div>
+  </div>
+  <div>
+    <h4 id="sunstrike_settnigs_h4">Описание: </h4>
+    Запретить вносить трек в тикет, если он находится в статусе “Решена” всем, вне зависимости от их роли на проекте.
+  </div>
+</div>
+

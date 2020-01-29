@@ -4,3 +4,9 @@ ru:
   label_settings_overrun: "Перерасход времени"
   label_settings_status:  "Автоматически менять статус задачи с “Новый” на “В работе” при внесении трудозатрат"
   label_settings_control: "Управление модулями"
+  add_spent_hours: 'Добавление информации о трудозатратах'
+  status_task: "Статус задачи 'Завершено'"
+  activerecord:
+    errors:
+      messages:
+        is_finish: "Запрещено добавлять информации о трудозатратах с таким статусом."

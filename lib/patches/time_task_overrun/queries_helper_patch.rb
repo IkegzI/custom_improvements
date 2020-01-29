@@ -9,13 +9,12 @@ module TimeTaskOverrun
         base.send(:include, InstanceMethods)
         base.class_eval do
           alias_method :column_value, :column_value_ext
-          #alias_method :column_value, :column_value_disable
         end
       end
 
       #
       module InstanceMethods
-        #data processing in the column total_spend_hours
+        #data processing in the column spend_hours
         def column_value_ext(column, item, value)
 
           case column.name
@@ -39,7 +38,6 @@ module TimeTaskOverrun
             format_hours(value) if value.to_f > 0
           when :spent_hours
                         # link_to(format_hours(value), project_time_entries_path(item.project, :issue_id => "#{item.id}")) if value > 0
-                        #  binding.pry
                         if item.estimated_hours.to_f > 0 && item.spent_hours.to_f > 0
                           link = project_time_entries_path(item.project, :issue_id => "~#{item.id}")
                           val = (
@@ -67,31 +65,6 @@ module TimeTaskOverrun
             format_object(value)
           end
         end
-
-
-        # отел так, но...
-        #right sign
-        # def overrun_time(item)
-        #   if (item.estimated_hours.nil? || item.total_spent_hours.nil?)
-        #     return 0
-        #   else
-        #     return (item.estimated_hours - item.total_spent_hours) * -1
-        #   end
-        # end
-        #
-        # #null data processing
-        # def link_data_columns(item, value)
-        #   if item.estimated_hours.to_i > 0 && item.total_spent_hours.to_i > 0
-        #     link =  project_time_entries_path(item.project, :issue_id => "~#{item.id}")
-        #     val = overrun_time(item)
-        #     link_to(format_hours(value), link) +
-        #         if val != 0
-        #           link_to('('+ (val > 0  ? '+' : '') + format_hours(val) + ')', link, style: (val < 0 ? 'color:#00cc00' : 'color:#cc0000'))
-        #         end
-        #   else
-        #     label_tag(:message, "нет данных")
-        #   end
-        # end
 
       end
     end

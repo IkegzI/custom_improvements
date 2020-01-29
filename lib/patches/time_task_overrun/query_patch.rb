@@ -12,7 +12,7 @@ module TimeTaskOverrun
       end
 
       module InstanceMethods
-        #add columns run_time and total spend hours
+        #add columns run_time and spend hours
         def columns_ext
           @savers = @savers || 1
           cols = (has_default_columns? ? default_columns_names : column_names).collect do |name|

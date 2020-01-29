@@ -5,9 +5,11 @@ module CustomImprovements
   def save_settings
     path = Dir.pwd + '/plugins/custom_improvements/config/settings.yml'
     settings = YAML.load(File.open(path))
-    settings["improvements_disable_overrun"] = CustomImprovements.load_settings[:improvements_disable_overrun]
-    settings["improvements_disable_status"] = CustomImprovements.load_settings[:improvements_disable_status]
-    File.write(path, settings.to_yaml)
+    data = CustomImprovements.load_settings
+    if data.values != settings.values
+      data.each_key { |key| settings[key.to_s] = data[key] }
+      File.write(path, settings.to_yaml)
+    end
   end
 
   class << self
