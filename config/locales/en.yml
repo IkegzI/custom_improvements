@@ -1,4 +1,8 @@
 # English strings go here for Rails i18n
 en:
-  label_improvements: SunStrike plugins
-  status_task: Status task 'Ended'
+  label_improvements: "SunStrike plugins"
+  status_task: "Status task 'Ended'"
+  activerecord:
+    errors:
+      messages:
+        is_finish: "No add hours"
