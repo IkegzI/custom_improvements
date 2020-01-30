@@ -17,7 +17,7 @@ module TaskFinish
         def validate_time_entry_ext
 
           def errors_add_spent_on?(arg, setting)
-            if CustomImprovements.load_settings[setting] == 0
+            if Setting.plugin_custom_improvements[setting] == '0'
               i = 0
               date = arg.to_s.split('-')
               date_now = Time.now.to_s.split('-')
@@ -28,29 +28,31 @@ module TaskFinish
           end
 
           def errors_add_issue_is_fihish?(arg, setting)
-            if CustomImprovements.load_settings[setting] == 0
-              if arg.status_id == 3
-                return true
+            if Setting.plugin_custom_improvements[setting] == '0'
+              begin
+                if arg.status_id == 3
+                  return true
+                end
+              rescue
+                errors.add :base
               end
             end
             false
           end
 
           def errors_add_issue_on_tracker?(hours, arg, setting)
-            if CustomImprovements.load_settings[setting] == 0
-              if arg.tracker_id == CustomImprovements.load_settings[:improvements_disable_id_tracker].to_i
-                return true if arg.estimated_hours <  arg.spent_hours + hours
+            if Setting.plugin_custom_improvements[setting] == '0'
+              if arg.tracker_id == Setting.plugin_custom_improvements['improvements_disable_id_tracker'].to_i
+                return true if arg.estimated_hours < arg.spent_hours + hours
               end
             end
             false
           end
 
 
-
-
-          errors.add :base, :on_tracker if errors_add_issue_on_tracker?(hours, issue, :improvements_disable_on_tracker)
-          errors.add :issue_id, :is_finish if errors_add_issue_is_fihish?(issue, :improvements_disable_finish)
-          errors.add :spent_on, :date_arrived if errors_add_spent_on?(spent_on, :improvements_disable_date)
+          errors.add :base, :on_tracker if errors_add_issue_on_tracker?(hours, issue, 'improvements_disable_on_tracker')
+          errors.add :issue_id, :is_finish if errors_add_issue_is_fihish?(issue, 'improvements_disable_finish')
+          errors.add :spent_on, :date_arrived if errors_add_spent_on?(spent_on, 'improvements_disable_date')
           errors.add :hours, :invalid if hours && (hours < 0 || hours >= 1000)
           errors.add :project_id, :invalid if project.nil?
           errors.add :issue_id, :invalid if (issue_id && !issue) || (issue && project != issue.project) || @invalid_issue_id

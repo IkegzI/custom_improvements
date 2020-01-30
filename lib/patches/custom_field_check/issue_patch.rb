@@ -21,8 +21,8 @@ module CustomFieldCheck
         def validate_custom_field_values_ext
 
           def check_error_field(arg, setting)
-            if CustomImprovements.load_settings[setting] == 0 && arg.value == '1'
-              if arg.custom_field.id == CustomImprovements.load_settings[:improvements_disable_id_custom_fields_check]
+            if Setting.plugin_custom_improvements[setting] == 0 && arg.value == '1'
+              if arg.custom_field.id == Setting.plugin_custom_improvements['improvements_disable_id_custom_fields_check']
                 return true if estimated_hours.nil? or estimated_hours.to_i <= 0
               end
               false
@@ -32,9 +32,9 @@ module CustomFieldCheck
           user = new_record? ? author : current_journal.try(:user)
           a = editable_custom_field_values(user).each(&:validate_value)
           if new_record? || custom_field_values_changed?
-            if CustomImprovements.load_settings[:improvements_disable_custom_fields_check] == 0
+            if Setting.plugin_custom_improvements['improvements_disable_custom_fields_check'] == '0'
               a.each do |item|
-                errors.add :base, :error_estimate if check_error_field(item, :improvements_disable_custom_fields_check)
+                errors.add :base, :error_estimate if check_error_field(item, 'improvements_disable_custom_fields_check')
               end
             end
 
@@ -45,8 +45,8 @@ module CustomFieldCheck
 
         def validate_issue_ext
 
-
-          if CustomImprovements.load_settings[:improvements_disable_wrong_write] == 0
+          binding.pry
+          if Setting.plugin_custom_improvements['improvements_disable_wrong_write'] == '0'
             begin
               if project.parent.parent.nil?
                 errors.add :base, :permission_project

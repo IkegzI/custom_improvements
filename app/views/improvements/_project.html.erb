@@ -1,0 +1,56 @@
+<% if Setting.plugin_custom_improvements['improvements_disable_project_add_task'].to_i == 0 %>
+
+
+  <script type="text/javascript">
+      $(document).ready(function () {
+              document.getElementById('project_custom_field_values_15').setAttribute('onclick', 'add_task_tracker()');
+              document.getElementById('project_trackers').setAttribute('onclick', 'add_tracker()');
+              document.getElementById('project_trackers').setAttribute('onclick', 'add_tracker()');
+              document.getElementById('project_trackers').setAttribute('onclick', 'add_tracker()');
+              <% begin %>
+
+              <% unless Project.find_by(identifier: params[:parent_id]).parent.nil? %>
+              document.getElementById('project_custom_field_values_15').checked = false;
+              <% end %>
+
+              <% rescue %>
+              document.getElementById('project_custom_field_values_15').checked == true
+              <% end %>
+
+          }
+      );
+
+      function add_task_tracker() {
+          if (document.getElementById('project_custom_field_values_15').checked == true) {
+              var len = document.getElementById('project_trackers').getElementsByTagName('input').length;
+              for (index = 0; index < len; index++) {
+                  document.getElementById('project_trackers').getElementsByTagName('input')[index].checked = false;
+                  document.getElementById('project_custom_field_values_15').setAttribute('edit', '2');
+              }
+              // document.getElementById('project_trackers').style.visibility = "hidden";
+          }
+          if (document.getElementById('project_custom_field_values_15').checked == false) {
+              document.getElementById('project_trackers').style.visibility = "";
+          }
+      }
+
+      function add_tracker() {
+          if (document.getElementById('project_custom_field_values_15').checked == true) {
+              if (document.getElementById('project_custom_field_values_15').getAttribute('edit') != '1') {
+                  var res = confirm('Вы действительно хотите разрешить создание тикетов в этом проекте?');
+                  if (res == true) {
+                      document.getElementById('project_custom_field_values_15').checked = false;
+                      document.getElementById('project_custom_field_values_15').setAttribute('edit', '1')
+                  } else {
+                      var len = document.getElementById('project_trackers').getElementsByTagName('input').length;
+                      for (index = 0; index < len; index++) {
+                          document.getElementById('project_trackers').getElementsByTagName('input')[index].checked = false;
+                          document.getElementById('project_custom_field_values_15').setAttribute('edit', '2');
+                      }
+                  }
+              }
+          }
+      }
+
+  </script>
+<% end %>

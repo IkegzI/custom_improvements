@@ -1,10 +1,41 @@
----
-improvements_disable_overrun: 0
-improvements_disable_status: 0
-improvements_disable_finish: 0
-improvements_disable_date: 0
-improvements_disable_on_tracker: 0
-improvements_disable_id_tracker: 0
-improvements_disable_custom_fields_check: 1
-improvements_disable_id_custom_fields_check: 1
-improvements_disable_wrong_write: 0
+# Redmine - project management software
+# Copyright (C) 2006-2017  Jean-Philippe Lang
+#
+# This program is free software; you can redistribute it and/or
+# modify it under the terms of the GNU General Public License
+# as published by the Free Software Foundation; either version 2
+# of the License, or (at your option) any later version.
+#
+# This program is distributed in the hope that it will be useful,
+# but WITHOUT ANY WARRANTY; without even the implied warranty of
+# MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+# GNU General Public License for more details.
+#
+# You should have received a copy of the GNU General Public License
+# along with this program; if not, write to the Free Software
+# Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA  02110-1301, USA.
+
+
+# DO NOT MODIFY THIS FILE !!!
+# Settings can be defined through the application in Admin -> Settings
+
+improvements_disable_overrun:
+  default: 1
+improvements_disable_status:
+  default: 1
+improvements_disable_finish:
+  default: 1
+improvements_disable_date:
+  default: 0
+improvements_disable_on_tracker:
+  default: 0
+improvements_disable_id_tracker:
+  default: 0
+improvements_disable_custom_fields_check:
+  default: 0
+improvements_disable_id_custom_fields_check:
+  default: 0
+improvements_disable_wrong_write:
+  default: 0
+improvements_disable_project_add_task:
+  default: 1

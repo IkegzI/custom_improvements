@@ -1,4 +1,5 @@
 <%= stylesheet_link_tag "improvements", plugin: "custom_improvements" %>
+
 <h3>Настройка</h3>
 
 <div id="sunstrike_settnigs_div">
@@ -7,11 +8,10 @@
       Показывать перерасход часов в списке задач
     </div>
     <div id="sunstrike_settnigs_select">
-      <%= hidden_field_tag 'settings[id_def]', 'overrun' %>
 
       <%= select_tag('settings[improvements_disable_overrun]',
                      options_for_select(ON_OFF_CONST,
-                                        CustomImprovements.load_settings[:improvements_disable_overrun].to_i)) %>
+                                        Setting.plugin_custom_improvements['improvements_disable_overrun'].to_i)) %>
     </div>
   </div>
   <div>
@@ -26,12 +26,10 @@
       Автоматически менять статус задачи с “Новый” на “В работе” при внесении трудозатрат
     </div>
     <div id="sunstrike_settnigs_select">
-      <%= hidden_field_tag 'settings[id]', 'CustomImprovements' %>
-      <%= hidden_field_tag 'settings[id_def]', 'status' %>
 
       <%= select_tag('settings[improvements_disable_status]',
                      options_for_select(ON_OFF_CONST,
-                                        CustomImprovements.load_settings[:improvements_disable_status].to_i)) %>
+                                        Setting.plugin_custom_improvements['improvements_disable_status'].to_i)) %>
     </div>
   </div>
   <div>
@@ -46,12 +44,10 @@
       Запрет вносить трудозатраты в завершенные задачи
     </div>
     <div id="sunstrike_settnigs_select">
-      <%= hidden_field_tag 'settings[id]', 'CustomImprovements' %>
-      <%= hidden_field_tag 'settings[id_def]', 'finish' %>
 
       <%= select_tag('settings[improvements_disable_finish]',
                      options_for_select(ON_OFF_CONST,
-                                        CustomImprovements.load_settings[:improvements_disable_finish].to_i)) %>
+                                        Setting.plugin_custom_improvements['improvements_disable_finish'].to_i)) %>
     </div>
   </div>
   <div>
@@ -66,12 +62,10 @@
       Запрет вносить трудозатраты в будущие дни
     </div>
     <div id="sunstrike_settnigs_select">
-      <%= hidden_field_tag 'settings[id]', 'CustomImprovements' %>
-      <%= hidden_field_tag 'settings[id_def]', 'date' %>
 
       <%= select_tag('settings[improvements_disable_date]',
                      options_for_select(ON_OFF_CONST,
-                                        CustomImprovements.load_settings[:improvements_disable_date].to_i)) %>
+                                        Setting.plugin_custom_improvements['improvements_disable_date'].to_i)) %>
     </div>
   </div>
   <div>
@@ -86,12 +80,10 @@
       Запрещать трекать больше эстимейта для тикетов с выбранным трекером
     </div>
     <div id="sunstrike_settnigs_select">
-      <%= hidden_field_tag 'settings[id]', 'CustomImprovements' %>
-      <%= hidden_field_tag 'settings[id_def]', 'custom_fields' %>
 
       <%= select_tag('settings[improvements_disable_custom_fields_check]',
                      options_for_select(ON_OFF_CONST,
-                                        CustomImprovements.load_settings[:improvements_disable_custom_fields_check].to_i)) %>
+                                        Setting.plugin_custom_improvements['improvements_disable_custom_fields_check'].to_i)) %>
     </div>
 
     <div id="sunstrike_settnigs_title">
@@ -101,7 +93,7 @@
     <div id="sunstrike_settnigs_select">
       <%= select_tag('settings[improvements_disable_id_custom_fields_check]',
                      options_for_select(CustomImprovements.options_select_custom_fields,
-                                        CustomImprovements.load_settings[:improvements_disable_id_custom_fields_check].to_i)) %>
+                                        Setting.plugin_custom_improvements['improvements_disable_id_custom_fields_check'].to_i)) %>
     </div>
   </div>
   <div>
@@ -117,12 +109,10 @@
       Запрещать создание тикетов в данном проекте
     </div>
     <div id="sunstrike_settnigs_select">
-      <%= hidden_field_tag 'settings[id]', 'CustomImprovements' %>
-      <%= hidden_field_tag 'settings[id_def]', 'finish' %>
 
       <%= select_tag('settings[improvements_disable_wrong_write]',
                      options_for_select(ON_OFF_CONST,
-                                        CustomImprovements.load_settings[:improvements_disable_wrong_write].to_i)) %>
+                                        Setting.plugin_custom_improvements['improvements_disable_wrong_write'].to_i)) %>
     </div>
   </div>
   <div>

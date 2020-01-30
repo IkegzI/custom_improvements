@@ -1,4 +1,5 @@
-<% if CustomImprovements.load_settings[:improvements_disable_status] == 0 %>
+
+<% if Setting.plugin_custom_improvements['improvements_disable_status'] == 0 %>
 <script type="text/javascript">
     $(document).ready(function () {
             document.getElementsByName('commit')[1].setAttribute('onmouseenter', 'status_edit()');

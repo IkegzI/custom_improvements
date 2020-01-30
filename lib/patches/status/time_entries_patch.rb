@@ -23,9 +23,10 @@ module Status
           end
 
           call_hook(:controller_timelog_edit_before_save, { :params => params, :time_entry => @time_entry })
+          binding.pry
 
           if @time_entry.save
-            if @issue.status_id == 1 and CustomImprovements.load_settings[:improvements_disable_status] == 0
+            if @issue.status_id == 1 and Setting.plugin_custom_improvements['improvements_disable_status'] == '0'
               @issue.status_id = 2
               @issue.save
             end

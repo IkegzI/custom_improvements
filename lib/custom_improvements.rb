@@ -1,18 +1,21 @@
 module CustomImprovements
 
   require_dependency 'hooks/status/hooks'
-  def save_settings
-    path = Dir.pwd + '/plugins/custom_improvements/config/settings.yml'
-    settings = YAML.load(File.open(path))
-    data = CustomImprovements.load_settings
-    if data.values != settings.values
-      data.each_key { |key| settings[key.to_s] = data[key] }
-      File.write(path, settings.to_yaml)
-    end
-  end
+  require_dependency 'setting'
+
+  # def save_settings
+  #   path = Dir.pwd + '/plugins/custom_improvements/config/settings.yml'
+  #   settings = YAML.load(File.open(path))
+  #   data = CustomImprovements.load_settings
+  #   if data.values != settings.values
+  #     data.each_key { |key| settings[key.to_s] = data[key] }
+  #     File.write(path, settings.to_yaml)
+  #   end
+  # end
+
 
   class << self
-
+    
     def load_settings(plugin_id = 'custom_improvements')
       cached_settings_name = '@load_settings_' + plugin_id
       cached_settings = instance_variable_get(cached_settings_name)
@@ -36,5 +39,6 @@ module CustomImprovements
     end
 
   end
+  
 end
 
