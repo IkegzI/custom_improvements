@@ -1,6 +1,7 @@
 #sunstrike_settnigs_div {
     padding: 10px 0 15px 30px;
-    border: #2a5a8a 1px solid;
+    background-color: #f6f6f6;
+    border: #e4e4e4 1px outset;
     margin: 10px;
 }
 
