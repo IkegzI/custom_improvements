@@ -5,3 +5,5 @@ improvements_disable_finish: 0
 improvements_disable_date: 0
 improvements_disable_on_tracker: 0
 improvements_disable_id_tracker: 3
+improvements_disable_custom_fields_check: 0
+improvements_disable_id_custom_fields_check: 2

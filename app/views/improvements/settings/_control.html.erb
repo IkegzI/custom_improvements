@@ -111,3 +111,33 @@
   </div>
 </div>
 
+<div id="sunstrike_settnigs_div">
+  <div>
+    <div id="sunstrike_settnigs_title">
+      Запрещать трекать больше эстимейта для тикетов с выбранным трекером
+    </div>
+    <div id="sunstrike_settnigs_select">
+      <%= hidden_field_tag 'settings[id]', 'CustomImprovements' %>
+      <%= hidden_field_tag 'settings[id_def]', 'custom_fields' %>
+
+      <%= select_tag('settings[improvements_disable_custom_fields_check]',
+                     options_for_select(ON_OFF_CONST,
+                                        CustomImprovements.load_settings[:improvements_disable_custom_fields_check].to_i)) %>
+    </div>
+
+    <div id="sunstrike_settnigs_title">
+      Настройка действует для трекера:
+    </div>
+
+    <div id="sunstrike_settnigs_select">
+      <%= select_tag('settings[improvements_disable_id_custom_fields_check]',
+                     options_for_select(CustomImprovements.options_select_custom_fields,
+                                        CustomImprovements.load_settings[:improvements_disable_id_custom_fields_check].to_i)) %>
+    </div>
+  </div>
+  <div>
+    <h4 id="sunstrike_settnigs_h4">Описание: </h4>
+    тикете с выбранным трекером прописано значение “Оценка трудозатрат”, и пользователь захочет внести в тикет больше
+    часов, чем прописано в эстимейте, система выдаст ошибку
+  </div>
+</div>

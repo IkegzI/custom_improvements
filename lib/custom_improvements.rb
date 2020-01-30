@@ -27,6 +27,10 @@ module CustomImprovements
       end
     end
 
+    def options_select_custom_fields
+      CustomField.all.map { |item| [item.name, item.id] }
+    end
+
     def options_select_tracker
       Tracker.all.map { |item| [item.name, item.id] }
     end
