@@ -3,3 +3,5 @@ improvements_disable_overrun: 0
 improvements_disable_status: 0
 improvements_disable_finish: 0
 improvements_disable_date: 0
+improvements_disable_on_tracker: 0
+improvements_disable_id_tracker: 3

@@ -4,7 +4,6 @@ module TimeTaskOverrun
   module Patches
     module QueriesHelperPatch
       include Redmine::I18n
-
       def self.included(base)
         base.send(:include, InstanceMethods)
         base.class_eval do
@@ -16,7 +15,6 @@ module TimeTaskOverrun
       module InstanceMethods
         #data processing in the column spend_hours
         def column_value_ext(column, item, value)
-
           case column.name
           when :id
             link_to value, issue_path(item)

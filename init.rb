@@ -20,6 +20,7 @@ Redmine::Plugin.register :custom_improvements do
   tor = 'time_task_overrun'
   st = 'status'
   tf = 'task_finish'
+  hl = 'helpers'
   path = './lib/patches'
   object_to_prepare.to_prepare do
     require_relative "#{path}/#{tor}/query_patch.rb"

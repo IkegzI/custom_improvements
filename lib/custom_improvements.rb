@@ -1,7 +1,6 @@
 module CustomImprovements
 
   require_dependency 'hooks/status/hooks'
-
   def save_settings
     path = Dir.pwd + '/plugins/custom_improvements/config/settings.yml'
     settings = YAML.load(File.open(path))
@@ -13,6 +12,7 @@ module CustomImprovements
   end
 
   class << self
+
     def load_settings(plugin_id = 'custom_improvements')
       cached_settings_name = '@load_settings_' + plugin_id
       cached_settings = instance_variable_get(cached_settings_name)
@@ -26,6 +26,12 @@ module CustomImprovements
         cached_settings
       end
     end
+
+    def options_select_tracker
+      tracker = Tracker.all
+      Tracker.all.map { |item| [item.name, item.id] }
+    end
+
   end
 end
 
