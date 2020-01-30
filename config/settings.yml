@@ -7,4 +7,4 @@ improvements_disable_on_tracker: 0
 improvements_disable_id_tracker: 0
 improvements_disable_custom_fields_check: 1
 improvements_disable_id_custom_fields_check: 1
-improvements_disable_wrong_write: 1
+improvements_disable_wrong_write: 0

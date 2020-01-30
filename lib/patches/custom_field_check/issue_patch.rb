@@ -46,13 +46,15 @@ module CustomFieldCheck
         def validate_issue_ext
 
 
-
           if CustomImprovements.load_settings[:improvements_disable_wrong_write] == 0
-            if project.parent.parent.nil?
+            begin
+              if project.parent.parent.nil?
+                errors.add :base, :permission_project
+              end
+            rescue
               errors.add :base, :permission_project
             end
           end
-
 
 
           if due_date && start_date && (start_date_changed? || due_date_changed?) && due_date < start_date
@@ -92,7 +94,7 @@ module CustomFieldCheck
               errors.add :parent_issue_id, :invalid
             elsif (@parent_issue != parent) && (
             self.would_reschedule?(@parent_issue) ||
-                @parent_issue.self_and_ancestors.any? {|a| a.relations_from.any? {|r| r.relation_type == IssueRelation::TYPE_PRECEDES && r.issue_to.would_reschedule?(self)}}
+                @parent_issue.self_and_ancestors.any? { |a| a.relations_from.any? { |r| r.relation_type == IssueRelation::TYPE_PRECEDES && r.issue_to.would_reschedule?(self) } }
             )
               errors.add :parent_issue_id, :invalid
             elsif !closed? && @parent_issue.closed?
@@ -110,16 +112,7 @@ module CustomFieldCheck
         end
 
 
-
       end
     end
   end
 end
-
-
-# def validate_custom_field_values
-#   user = new_record? ? author : current_journal.try(:user)
-#   if new_record? || custom_field_values_changed?
-#     editable_custom_field_values(user).each(&:validate_value)
-#   end
-# end
