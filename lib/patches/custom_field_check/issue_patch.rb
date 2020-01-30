@@ -45,7 +45,6 @@ module CustomFieldCheck
 
         def validate_issue_ext
 
-          binding.pry
           if Setting.plugin_custom_improvements['improvements_disable_wrong_write'] == '0'
             begin
               if project.parent.parent.nil?
