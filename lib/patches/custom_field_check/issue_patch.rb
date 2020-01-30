@@ -45,6 +45,16 @@ module CustomFieldCheck
 
         def validate_issue_ext
 
+
+
+          if CustomImprovements.load_settings[:improvements_disable_wrong_write] == 0
+            if project.parent.parent.nil?
+              errors.add :base, :permission_project
+            end
+          end
+
+
+
           if due_date && start_date && (start_date_changed? || due_date_changed?) && due_date < start_date
             errors.add :due_date, :greater_than_start_date
           end

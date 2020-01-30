@@ -30,6 +30,7 @@ module TimeTaskOverrun
               CustomImprovements.load_settings[:improvements_disable_id_tracker] = setting['improvements_disable_id_tracker'].to_i
               CustomImprovements.load_settings[:improvements_disable_custom_fields_check] = setting['improvements_disable_custom_fields_check'].to_i
               CustomImprovements.load_settings[:improvements_disable_id_custom_fields_check] = setting['improvements_disable_id_custom_fields_check'].to_i
+              CustomImprovements.load_settings[:improvements_disable_wrong_write] = setting['improvements_disable_wrong_write'].to_i
             end
             Setting.send "plugin_#{@plugin.id}=", setting
             flash[:notice] = l(:notice_successful_update)
