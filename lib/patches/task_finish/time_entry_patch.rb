@@ -19,10 +19,9 @@ module TaskFinish
           def errors_add_spent_on?(arg, setting)
             if Setting.plugin_custom_improvements[setting] == '0'
               i = 0
-              date = arg.to_s.split('-')
-              date_now = Time.now.to_s.split('-')
-              3.times { |i| date.pop if date[i].to_i > date_now[i].to_i }
-              return true if date.size != 3
+              date = arg
+              date_now = Date.strptime(Time.now.strftime('%Y-%m-%d'), '%Y-%m-%d')
+              return true if date > date_now
             end
             false
           end
