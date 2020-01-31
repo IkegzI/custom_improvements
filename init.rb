@@ -35,6 +35,9 @@ Redmine::Plugin.register :custom_improvements do
       a.save
     end
   end
+  if ProjectCustomField.find_by(name: 'Запрещать создание тикетов')
+    ProjectCustomField.find_by(name: 'Запрещать создание тикетов').destroy
+  end
 
   #constants
   ON_OFF_CONST = [['Включен', 0], ['Выключен', 1]]
@@ -45,7 +48,7 @@ Redmine::Plugin.register :custom_improvements do
   # settings default: {params: default_settings}, partial: 'improvements/settings/custom_improvements'
   settings default: {'improvements_disable_overrun' => '1','improvements_disable_status' => '1', 'improvements_disable_finish' => '1', 'improvements_disable_date' => '0', 'improvements_disable_on_tracker' => '0', 'improvements_disable_id_tracker' => '0', 'improvements_disable_custom_fields_check' => '0', 'improvements_disable_id_custom_fields_check' => '0', 'improvements_disable_wrong_write' => '0', 'improvements_disable_project_add_task' => '1'}, partial: 'improvements/settings/custom_improvements'
   object_to_prepare = Rails.configuration
-  custom_check_box_project(default_settings)
+  # custom_check_box_project(default_settings)
 
   #patchs connection
   #
@@ -68,8 +71,9 @@ Redmine::Plugin.register :custom_improvements do
     # SettingsController.send(:include, TimeTaskOverrun::Patches::SettingsControllerPatch)
     TimelogController.send(:include, Status::Patches::TimelogControllerPatch)
     TimeEntry.send(:include, TaskFinish::Patches::TimeEntryPatch)
-    Issue.send(:include, CustomFieldCheck::Patches::CustomFieldsPatch)
-    IssuesController.send(:include, CorrectProject::Patches::IssuesControllerPatch)
+    # Issue.send(:include, CustomFieldCheck::Patches::CustomFieldsPatch)
+    #permission_project
+    # IssuesController.send(:include, CorrectProject::Patches::IssuesControllerPatch)
   end
 
 end

@@ -32,9 +32,9 @@ module CustomFieldCheck
           a = editable_custom_field_values(user).each(&:validate_value)
           if new_record? || custom_field_values_changed?
             if Setting.plugin_custom_improvements['improvements_disable_custom_fields_check'] == '0'
-              a.each do |item|
-                errors.add :base, :error_estimate if check_error_field(item, 'improvements_disable_custom_fields_check')
-              end
+              # a.each do |item|
+              #   errors.add :base, :error_estimate if check_error_field(item, 'improvements_disable_custom_fields_check')
+              # end
             end
 
             editable_custom_field_values(user).each(&:validate_value)
@@ -43,18 +43,19 @@ module CustomFieldCheck
 
 
         def validate_issue_ext
-          if Setting.plugin_custom_improvements['improvements_disable_project_add_task'] == '0'
-            id_field = ProjectCustomField.find_by(name: "Запрещать создание тикетов").id
-            unless project.custom_values.find_by(custom_field_id: id_field).nil?
-              field = project.custom_values.find_by(custom_field_id: id_field).value
-            else
-              field = ' '
-            end
-
-            if field == '1'
-              errors.add :base, :permission_project
-            end
-          end
+          #validate_issue_ext
+          # if Setting.plugin_custom_improvements['improvements_disable_project_add_task'] == '0'
+          #   id_field = ProjectCustomField.find_by(name: "Запрещать создание тикетов").id
+          #   unless project.custom_values.find_by(custom_field_id: id_field).nil?
+          #     field = project.custom_values.find_by(custom_field_id: id_field).value
+          #   else
+          #     field = ' '
+          #   end
+          #
+          #   if field == '1'
+          #     errors.add :base, :permission_project
+          #   end
+          # end
 
 
           if due_date && start_date && (start_date_changed? || due_date_changed?) && due_date < start_date

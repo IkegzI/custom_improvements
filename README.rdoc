@@ -1,3 +1,4 @@
 = custom_improvements
 
-Description goes here
+Для корректной работы сначало нижно настроить плагин через меню: Администрирование => Модули => На против плагина
+SunStrike Redmine Custom Improvements 
