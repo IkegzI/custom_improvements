@@ -23,6 +23,7 @@ module CustomFieldCheck
           def check_error_field(arg, setting)
 
             if Setting.plugin_custom_improvements[setting] == '0' and arg.value == '1'
+              binding.pry
               if arg.custom_field.id == Setting.plugin_custom_improvements['improvements_disable_id_custom_fields_check'].to_i
                 return true if estimated_hours.nil? or estimated_hours.to_i <= 0
               end
