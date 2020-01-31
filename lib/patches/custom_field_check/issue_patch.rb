@@ -21,7 +21,6 @@ module CustomFieldCheck
         def validate_custom_field_values_ext
 
           def check_error_field(arg, setting)
-            binding.pry
 
             if Setting.plugin_custom_improvements[setting] == '0' and arg.value == '1'
               if arg.custom_field.id == Setting.plugin_custom_improvements['improvements_disable_id_custom_fields_check'].to_i
