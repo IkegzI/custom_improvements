@@ -1,0 +1,21 @@
+<script type="text/javascript">
+
+
+    $(document).ready(function () {
+            document.getElementById('project_custom_field_values_15').setAttribute('onclick', 'add_task_tracker()');
+            document.getElementById('project_trackers').setAttribute('onclick', 'add_tracker()');
+            document.getElementById('project_trackers').setAttribute('onclick', 'add_tracker()');
+            document.getElementById('project_trackers').setAttribute('onclick', 'add_tracker()');
+            <% begin %>
+
+            <% unless Project.find_by(identifier: params[:parent_id]).parent.nil? %>
+            document.getElementById('project_custom_field_values_15').checked = false;
+            <% end %>
+
+            <% rescue %>
+            document.getElementById('project_custom_field_values_15').checked == true
+            <% end %>
+
+        }
+    );
+    </script>
