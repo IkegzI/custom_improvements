@@ -15,14 +15,14 @@ module CorrectProject
       module InstanceMethods
 
         def new_ext
-
+          binding.pry
           if Setting.plugin_custom_improvements['improvements_disable_project_add_task'] == '0'
-            unless @project.nil?
+            uri = url_for(:only_path => true).split('/')[1..2]
+
+            if uri.first == 'project'
               id_field = ProjectCustomField.find_by(name: "Запрещать создание тикетов").id
-              unless @project.custom_values.find_by(custom_field_id: id_field).value.nil?
-                field = @project.custom_values.find_by(custom_field_id: id_field).value
-              end
-            else
+              field = Project.find_by(identifier: uri.last).custom_values.find_by(custom_field_id: id_field).value
+              else
               field = ' '
             end
 
