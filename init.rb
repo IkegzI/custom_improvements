@@ -43,7 +43,7 @@ Redmine::Plugin.register :custom_improvements do
   default_settings = CustomImprovements.load_settings
 
   # settings default: {params: default_settings}, partial: 'improvements/settings/custom_improvements'
-  settings name: 'plugin_custom_improvements', value: {'improvements_disable_overrun' => '1','improvements_disable_status' => '1', 'improvements_disable_finish' => '1', 'improvements_disable_date' => '0', 'improvements_disable_on_tracker' => '0', 'improvements_disable_id_tracker' => '0', 'improvements_disable_custom_fields_check' => '0', 'improvements_disable_id_custom_fields_check' => '0', 'improvements_disable_wrong_write' => '0', 'improvements_disable_project_add_task' => '1'}, partial: 'improvements/settings/custom_improvements'
+  settings default: {'improvements_disable_overrun' => '1','improvements_disable_status' => '1', 'improvements_disable_finish' => '1', 'improvements_disable_date' => '0', 'improvements_disable_on_tracker' => '0', 'improvements_disable_id_tracker' => '0', 'improvements_disable_custom_fields_check' => '0', 'improvements_disable_id_custom_fields_check' => '0', 'improvements_disable_wrong_write' => '0', 'improvements_disable_project_add_task' => '1'}, partial: 'improvements/settings/custom_improvements'
   object_to_prepare = Rails.configuration
   custom_check_box_project(default_settings)
 
@@ -62,14 +62,14 @@ Redmine::Plugin.register :custom_improvements do
     require_relative "#{path}/#{st}/time_entries_patch.rb"
     require_relative "#{path}/#{tf}/time_entry_patch.rb"
     require_relative "#{path}/#{cf}/issue_patch.rb"
-    # require_relative "#{path}/#{cp}/issues_controller_patch.rb"
+    require_relative "#{path}/#{cp}/issues_controller_patch.rb"
     Query.send(:include, TimeTaskOverrun::Patches::QueryPatch)
     QueriesHelper.send(:include, TimeTaskOverrun::Patches::QueriesHelperPatch)
     # SettingsController.send(:include, TimeTaskOverrun::Patches::SettingsControllerPatch)
     TimelogController.send(:include, Status::Patches::TimelogControllerPatch)
     TimeEntry.send(:include, TaskFinish::Patches::TimeEntryPatch)
     Issue.send(:include, CustomFieldCheck::Patches::CustomFieldsPatch)
-    # IssuesController.send(:include, CorrectProject::Patches::CorrectProjectPatch)
+    IssuesController.send(:include, CorrectProject::Patches::IssuesControllerPatch)
   end
 
 end

@@ -21,7 +21,7 @@ module CustomFieldCheck
         def validate_custom_field_values_ext
 
           def check_error_field(arg, setting)
-
+            binding.pry
             if Setting.plugin_custom_improvements[setting] == '0' and arg.value == '1'
               binding.pry
               if arg.custom_field.id == Setting.plugin_custom_improvements['improvements_disable_id_custom_fields_check'].to_i
@@ -33,6 +33,7 @@ module CustomFieldCheck
           user = new_record? ? author : current_journal.try(:user)
           a = editable_custom_field_values(user).each(&:validate_value)
           if new_record? || custom_field_values_changed?
+            binding.pry
             if Setting.plugin_custom_improvements['improvements_disable_custom_fields_check'] == '0'
               a.each do |item|
                 errors.add :base, :error_estimate if check_error_field(item, 'improvements_disable_custom_fields_check')

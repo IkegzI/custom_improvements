@@ -6,8 +6,8 @@ module Hooks
     class CustomImprovementsHookListener < Redmine::Hook::ViewListener
 
       render_on(:view_issues_show_details_bottom, partial: 'improvements/status')
-      render_on(:view_issues_new_top, partial: 'improvements/issue_error')
-      # render_on(:view_projects_form, partial: 'improvements/project')
+      # render_on(:view_issues_new_top, partial: 'improvements/issue_error')
+      render_on(:view_projects_form, partial: 'improvements/project')
       # render_on(:view_layouts_base_content, partial: 'improvements/settings/setsetting')
 
     end

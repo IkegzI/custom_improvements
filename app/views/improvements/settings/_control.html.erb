@@ -1,4 +1,3 @@
-<% Setting.plugin_custom_improvements = {} %>
 <%= stylesheet_link_tag "improvements", plugin: "custom_improvements" %>
 <h3>Настройка</h3>
 
@@ -137,7 +136,7 @@
     </div>
 
     <div id="sunstrike_settnigs_select">
-      <%= select_tag('settings[improvements_disable_id_custom_fields_check]',
+      <%= select_tag('settings[improvements_disable_id_tracker]',
                      options_for_select(CustomImprovements.options_select_tracker,
                                         Setting.plugin_custom_improvements['improvements_disable_id_tracker'].to_i)) %>
     </div>
