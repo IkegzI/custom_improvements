@@ -15,7 +15,6 @@ module CorrectProject
       module InstanceMethods
 
         def new_ext
-          binding.pry
           if Setting.plugin_custom_improvements['improvements_disable_project_add_task'] == '0'
             uri = url_for(:only_path => true).split('/')[1..2]
 
