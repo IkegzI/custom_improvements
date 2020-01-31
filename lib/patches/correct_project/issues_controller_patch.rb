@@ -19,24 +19,26 @@ module CorrectProject
           if Setting.plugin_custom_improvements['improvements_disable_project_add_task'] == '0'
             unless @project.nil?
               id_field = ProjectCustomField.find_by(name: "Запрещать создание тикетов").id
-              field = @project.custom_values.find_by(custom_field_id: id_field).value || " "
+              unless @project.custom_values.find_by(custom_field_id: id_field).value.nil?
+                field = @project.custom_values.find_by(custom_field_id: id_field).value
+              end
             else
               field = ' '
             end
 
-              if field == '1'
-                redirect_to project_issues_path(@project), flash: { error: "Создание новых задач в данном проекте ограничено настройками проекта" }
-              else
-                respond_to do |format|
-                  format.html { render :action => 'new', :layout => !request.xhr? }
-                  format.js
-                end
-
+            if field == '1'
+              redirect_to project_issues_path(@project), flash: {error: "Создание новых задач в данном проекте ограничено настройками проекта"}
+            else
+              respond_to do |format|
+                format.html { render :action => 'new', :layout => !request.xhr? }
+                format.js
               end
+
             end
           end
-
         end
+
       end
     end
   end
+end
