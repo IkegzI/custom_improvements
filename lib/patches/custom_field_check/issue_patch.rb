@@ -44,7 +44,6 @@ module CustomFieldCheck
 
 
         def validate_issue_ext
-          binding.pry
           if Setting.plugin_custom_improvements['improvements_disable_project_add_task'] == '0'
             begin
               id_field = ProjectCustomField.find_by(name: "Запрещать создание тикетов").id

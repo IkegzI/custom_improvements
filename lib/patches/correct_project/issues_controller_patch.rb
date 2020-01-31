@@ -15,7 +15,6 @@ module CorrectProject
       module InstanceMethods
 
         def new_ext
-          binding.pry
           if Setting.plugin_custom_improvements['improvements_disable_project_add_task'] == '0'
             id_field = ProjectCustomField.find_by(name: "Запрещать создание тикетов").id
             field = @project.custom_values.find_by(custom_field_id: id_field).value
