@@ -19,7 +19,7 @@ module CorrectProject
           if Setting.plugin_custom_improvements['improvements_disable_project_add_task'] == '0'
             unless @project.nil?
               id_field = ProjectCustomField.find_by(name: "Запрещать создание тикетов").id
-              field = @project.custom_values.find_by(custom_field_id: id_field).value
+              field = @project.custom_values.find_by(custom_field_id: id_field).value || " "
             else
               field = ' '
             end
