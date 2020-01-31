@@ -25,7 +25,6 @@ module Status
           call_hook(:controller_timelog_edit_before_save, {:params => params, :time_entry => @time_entry})
 
           if @time_entry.save
-            binding.pry
             if Setting.plugin_custom_improvements['improvements_disable_status'] == '0'
               if (@issue.status_id == IssueStatus.find_by(name: 'Новая').id)
                 @issue.status_id = IssueStatus.find_by(name: 'В работе').id
