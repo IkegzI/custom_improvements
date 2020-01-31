@@ -1,5 +1,7 @@
 <%= stylesheet_link_tag "improvements", plugin: "custom_improvements" %>
-
+<%= hidden_field_tag 'settings[improvements_disable_on_tracker]', value: '0' %>
+<%= hidden_field_tag 'settings[improvements_disable_id_tracker]', value: '0' %>
+<%= hidden_field_tag 'settings[improvements_disable_project_add_task]', value: '0' %>
 <h3>Настройка</h3>
 
 <div id="sunstrike_settnigs_div">

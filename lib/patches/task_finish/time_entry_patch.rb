@@ -18,6 +18,7 @@ module TaskFinish
 
           def errors_add_spent_on?(arg, setting)
             if Setting.plugin_custom_improvements[setting] == '0'
+              binding.pry
               i = 0
               date = arg.to_s.split('-')
               date_now = Time.now.to_s.split('-')

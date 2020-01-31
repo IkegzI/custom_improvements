@@ -35,3 +35,6 @@ module TimeTaskOverrun
     end
   end
 end
+'improvements_disable_on_tracker'
+'improvements_disable_id_tracker'
+'improvements_disable_project_add_task'
