@@ -45,13 +45,14 @@ module CustomFieldCheck
 
         def validate_issue_ext
           if Setting.plugin_custom_improvements['improvements_disable_project_add_task'] == '0'
-            begin
-              id_field = ProjectCustomField.find_by(name: "Запрещать создание тикетов").id
+            id_field = ProjectCustomField.find_by(name: "Запрещать создание тикетов").id
+            unless project.custom_values.find_by(custom_field_id: id_field).nil?
               field = project.custom_values.find_by(custom_field_id: id_field).value
-              if field == '1'
-               errors.add :base, :permission_project
-              end
-            rescue
+            else
+              field = ' '
+            end
+
+            if field == '1'
               errors.add :base, :permission_project
             end
           end
