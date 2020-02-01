@@ -43,19 +43,19 @@ module CustomFieldCheck
 
 
         def validate_issue_ext
-          #validate_issue_ext
-          # if Setting.plugin_custom_improvements['improvements_disable_project_add_task'] == '0'
-          #   id_field = ProjectCustomField.find_by(name: "Запрещать создание тикетов").id
-          #   unless project.custom_values.find_by(custom_field_id: id_field).nil?
-          #     field = project.custom_values.find_by(custom_field_id: id_field).value
-          #   else
-          #     field = ' '
-          #   end
-          #
-          #   if field == '1'
-          #     errors.add :base, :permission_project
-          #   end
-          # end
+          validate_issue_ext
+          if Setting.plugin_custom_improvements['improvements_disable_project_add_task'] == '0'
+            id_field = ProjectCustomField.find_by(name: "Запрещать создание тикетов").id
+            unless project.custom_values.find_by(custom_field_id: id_field).nil?
+              field = project.custom_values.find_by(custom_field_id: id_field).value
+            else
+              field = ' '
+            end
+
+            if field == '1'
+              errors.add :base, :permission_project
+            end
+          end
 
 
           if due_date && start_date && (start_date_changed? || due_date_changed?) && due_date < start_date

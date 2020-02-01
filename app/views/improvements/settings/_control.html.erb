@@ -37,6 +37,7 @@
   </div>
 </div>
 
+
 <div id="sunstrike_settnigs_div">
   <div>
     <div id="sunstrike_settnigs_title">
@@ -70,6 +71,80 @@
   <div>
     <h4 id="sunstrike_settnigs_h4">Описание: </h4>
     Проверять сегодняшнюю дату, и запрещать вносить трек за тот день, который еще не наступил.
+  </div>
+</div>
+
+<div id="sunstrike_settnigs_div">
+  <div>
+    <div id="sunstrike_settnigs_title">
+      Запрет на создавать задачи без указания эстимейта для задач с параметром
+    </div>
+    <div id="sunstrike_settnigs_select">
+
+      <%= select_tag('settings[improvements_disable_custom_fields_check]',
+                     options_for_select(ON_OFF_CONST,
+                                        Setting.plugin_custom_improvements['improvements_disable_custom_fields_check'].to_i)) %>
+    </div>
+
+    <div id="sunstrike_settnigs_title">
+      Выберете поле, по которому будет действовать настройка:
+    </div>
+
+    <div id="sunstrike_settnigs_select">
+      <%= select_tag('settings[improvements_disable_id_custom_fields_check]',
+                     options_for_select(CustomImprovements.options_select_custom_fields,
+                                        Setting.plugin_custom_improvements['improvements_disable_id_custom_fields_check'].to_i)) %>
+    </div>
+  </div>
+  <div>
+    <h4 id="sunstrike_settnigs_h4">Описание: </h4>
+    Выдавать ошибку в том случае, если пытаемся создать новый тикет с параметром "ДА", в выбранном поле выше
+  </div>
+</div>
+
+<div id="sunstrike_settnigs_div">
+  <div>
+    <div id="sunstrike_settnigs_title">
+      Запрещать создание тикетов в данном проекте
+    </div>
+    <div id="sunstrike_settnigs_select">
+
+      <%= select_tag('settings[improvements_disable_project_add_task]',
+                     options_for_select(ON_OFF_CONST,
+                                        Setting.plugin_custom_improvements['improvements_disable_project_add_task'].to_i)) %>
+    </div>
+  </div>
+  <div>
+    <h4 id="sunstrike_settnigs_h4">Описание: </h4>
+    Заперт создания тикетов в проектах, где это указано.
+  </div>
+</div>
+
+<div id="sunstrike_settnigs_div">
+  <div>
+    <div id="sunstrike_settnigs_title">
+      Запрещать трекать больше эстимейта для тикетов с выбранным трекером
+    </div>
+    <div id="sunstrike_settnigs_select">
+
+      <%= select_tag('settings[improvements_disable_on_tracker]',
+                     options_for_select(ON_OFF_CONST,
+                                        Setting.plugin_custom_improvements['improvements_disable_on_tracker'].to_i)) %>
+    </div>
+
+    <div id="sunstrike_settnigs_title">
+      Выберете трекер, по которому будет действовать настройка:
+    </div>
+
+    <div id="sunstrike_settnigs_select">
+      <%= select_tag('settings[improvements_disable_id_tracker]',
+                     options_for_select(CustomImprovements.options_select_tracker,
+                                        Setting.plugin_custom_improvements['improvements_disable_id_tracker'].to_i)) %>
+    </div>
+  </div>
+  <div>
+    <h4 id="sunstrike_settnigs_h4">Описание: </h4>
+    Заперт создания тикетов проектах,где указана такая опция
   </div>
 </div>
 

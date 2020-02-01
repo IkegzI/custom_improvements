@@ -71,9 +71,9 @@ Redmine::Plugin.register :custom_improvements do
     # SettingsController.send(:include, TimeTaskOverrun::Patches::SettingsControllerPatch)
     TimelogController.send(:include, Status::Patches::TimelogControllerPatch)
     TimeEntry.send(:include, TaskFinish::Patches::TimeEntryPatch)
-    # Issue.send(:include, CustomFieldCheck::Patches::CustomFieldsPatch)
+    Issue.send(:include, CustomFieldCheck::Patches::CustomFieldsPatch)
     #permission_project
-    # IssuesController.send(:include, CorrectProject::Patches::IssuesControllerPatch)
+    IssuesController.send(:include, CorrectProject::Patches::IssuesControllerPatch)
   end
 
 end

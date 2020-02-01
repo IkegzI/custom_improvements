@@ -1,0 +1,76 @@
+<%= stylesheet_link_tag "improvements", plugin: "custom_improvements" %>
+<h3>Настройка</h3>
+
+<div id="sunstrike_settnigs_div">
+  <div>
+    <div id="sunstrike_settnigs_title">
+      Показывать перерасход часов в списке задач
+    </div>
+    <div id="sunstrike_settnigs_select">
+
+      <%= select_tag('settings[improvements_disable_overrun]',
+                     options_for_select(ON_OFF_CONST,
+                                        Setting.plugin_custom_improvements['improvements_disable_overrun'].to_i)) %>
+    </div>
+  </div>
+  <div>
+    <h4 id="sunstrike_settnigs_h4">Описание: </h4>
+    Добавить в колонке Трудозатраты данные о превышении эстимейта.
+  </div>
+</div>
+
+<div id="sunstrike_settnigs_div">
+  <div>
+    <div id="sunstrike_settnigs_title">
+      Автоматически менять статус задачи с “Новый” на “В работе” при внесении трудозатрат
+    </div>
+    <div id="sunstrike_settnigs_select">
+
+      <%= select_tag('settings[improvements_disable_status]',
+                     options_for_select(ON_OFF_CONST,
+                                        Setting.plugin_custom_improvements['improvements_disable_status'].to_i)) %>
+    </div>
+  </div>
+  <div>
+    <h4 id="sunstrike_settnigs_h4">Описание: </h4>
+    Автоматически менять статус тикета с “Новый” на статус “В работе”, когда сотрудник добавил трек часов в задачу.
+  </div>
+</div>
+
+<div id="sunstrike_settnigs_div">
+  <div>
+    <div id="sunstrike_settnigs_title">
+      Запрет вносить трудозатраты в завершенные задачи
+    </div>
+    <div id="sunstrike_settnigs_select">
+
+      <%= select_tag('settings[improvements_disable_finish]',
+                     options_for_select(ON_OFF_CONST,
+                                        Setting.plugin_custom_improvements['improvements_disable_finish'].to_i)) %>
+    </div>
+  </div>
+  <div>
+    <h4 id="sunstrike_settnigs_h4">Описание: </h4>
+    Запретить вносить трек в тикет, если он находится в статусе “Решена” всем, вне зависимости от их роли на проекте.
+  </div>
+</div>
+
+<div id="sunstrike_settnigs_div">
+  <div>
+    <div id="sunstrike_settnigs_title">
+      Запрет вносить трудозатраты в будущие дни
+    </div>
+    <div id="sunstrike_settnigs_select">
+
+      <%= select_tag('settings[improvements_disable_date]',
+                     options_for_select(ON_OFF_CONST,
+                                        Setting.plugin_custom_improvements['improvements_disable_date'].to_i)) %>
+    </div>
+  </div>
+  <div>
+    <h4 id="sunstrike_settnigs_h4">Описание: </h4>
+    Проверять сегодняшнюю дату, и запрещать вносить трек за тот день, который еще не наступил.
+  </div>
+</div>
+
+

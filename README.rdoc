@@ -1,4 +1,5 @@
 = custom_improvements
 
 Для корректной работы сначало нижно настроить плагин через меню: Администрирование => Модули => На против плагина
-SunStrike Redmine Custom Improvements 
+SunStrike Redmine Custom Improvements нажать параметры, выбрать настройки и нажать "Применить".
+ссылка на настройки: http(s)://<адрес сервера>/settings/plugin/custom_improvements
