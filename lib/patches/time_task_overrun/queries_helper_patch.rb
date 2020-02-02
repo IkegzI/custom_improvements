@@ -1,7 +1,7 @@
 require_dependency 'queries_helper'
 require_dependency 'issue_query'
-module Patches
-  module TimeTaskOverrun
+module TimeTaskOverrun
+  module Patches
     module QueriesHelperPatch
       include Redmine::I18n
 
@@ -16,7 +16,6 @@ module Patches
       module InstanceMethods
         #data processing in the column spend_hours
         def column_value_ext(column, item, value)
-          binding.pry
           case column.name
           when :id
             link_to value, issue_path(item)

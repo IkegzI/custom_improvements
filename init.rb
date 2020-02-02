@@ -8,36 +8,36 @@ Redmine::Plugin.register :custom_improvements do
   url 'http://sunstrikestudios.com'
   # author_url 'http://example.com/about'
 
-  def custom_check_box_project(default_settings)
-    unless ProjectCustomField.find_by(name: 'Запрещать создание тикетов')
-      a = ProjectCustomField.new(type: "ProjectCustomField",
-                                 name: "Запрещать создание тикетов",
-                                 field_format: "bool",
-                                 possible_values: nil,
-                                 regexp: "",
-                                 min_length: nil,
-                                 max_length: nil,
-                                 is_required: false,
-                                 is_for_all: false,
-                                 is_filter: false,
-                                 position: nil,
-                                 searchable: false,
-                                 default_value: "1",
-                                 editable: true,
-                                 visible: true,
-                                 multiple: false,
-                                 format_store: {"url_pattern"=>"", "edit_tag_style"=>"check_box"},
-                                 description: nil,
-                                 formula: nil,
-                                 is_computed: false,
-                                 is_required: true)
-
-      a.save
-    end
-  end
-  if ProjectCustomField.find_by(name: 'Запрещать создание тикетов')
-    ProjectCustomField.find_by(name: 'Запрещать создание тикетов').destroy
-  end
+  # def custom_check_box_project(default_settings)
+  #   unless ProjectCustomField.find_by(name: 'Запрещать создание тикетов')
+  #     a = ProjectCustomField.new(type: "ProjectCustomField",
+  #                                name: "Запрещать создание тикетов",
+  #                                field_format: "bool",
+  #                                possible_values: nil,
+  #                                regexp: "",
+  #                                min_length: nil,
+  #                                max_length: nil,
+  #                                is_required: false,
+  #                                is_for_all: false,
+  #                                is_filter: false,
+  #                                position: nil,
+  #                                searchable: false,
+  #                                default_value: "1",
+  #                                editable: true,
+  #                                visible: true,
+  #                                multiple: false,
+  #                                format_store: {"url_pattern"=>"", "edit_tag_style"=>"check_box"},
+  #                                description: nil,
+  #                                formula: nil,
+  #                                is_computed: false,
+  #                                is_required: true)
+  #
+  #     a.save
+  #   end
+  # end
+  # if ProjectCustomField.find_by(name: 'Запрещать создание тикетов')
+  #   ProjectCustomField.find_by(name: 'Запрещать создание тикетов').destroy
+  # end
 
   #constants
   ON_OFF_CONST = [['Включен', 0], ['Выключен', 1]]
@@ -77,4 +77,4 @@ Redmine::Plugin.register :custom_improvements do
   end
 
 end
-{'improvements_disable_overrun' => '1','improvements_disable_status' => '1', 'improvements_disable_finish' => '1', 'improvements_disable_date' => '0', 'improvements_disable_on_tracker' => '0', 'improvements_disable_id_tracker' => '0', 'improvements_disable_custom_fields_check' => '0', 'improvements_disable_id_custom_fields_check' => '0', 'improvements_disable_wrong_write' => '0', 'improvements_disable_project_add_task' => '1'}
+# {'improvements_disable_overrun' => '1','improvements_disable_status' => '1', 'improvements_disable_finish' => '1', 'improvements_disable_date' => '0', 'improvements_disable_on_tracker' => '0', 'improvements_disable_id_tracker' => '0', 'improvements_disable_custom_fields_check' => '0', 'improvements_disable_id_custom_fields_check' => '0', 'improvements_disable_wrong_write' => '0', 'improvements_disable_project_add_task' => '1'}
