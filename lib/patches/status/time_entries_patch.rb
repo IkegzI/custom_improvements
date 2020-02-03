@@ -26,8 +26,8 @@ module Status
 
           if @time_entry.save
             if Setting.plugin_custom_improvements['improvements_disable_status'] == '0'
-              if (@issue.status_id == IssueStatus.find_by(name: 'Новая').id)
-                @issue.status_id = IssueStatus.find_by(name: 'В работе').id
+              if @issue.status_id == 1
+                @issue.status_id = 2
                 @issue.save
               end
             end
