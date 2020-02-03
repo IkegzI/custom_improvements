@@ -32,9 +32,9 @@ module CustomFieldCheck
           a = editable_custom_field_values(user).each(&:validate_value)
           if new_record? || custom_field_values_changed?
             if Setting.plugin_custom_improvements['improvements_disable_custom_fields_check'] == '0'
-              # a.each do |item|
-              #   errors.add :base, :error_estimate if check_error_field(item, 'improvements_disable_custom_fields_check')
-              # end
+              a.each do |item|
+                errors.add :base, :error_estimate if check_error_field(item, 'improvements_disable_custom_fields_check')
+              end
             end
 
             editable_custom_field_values(user).each(&:validate_value)

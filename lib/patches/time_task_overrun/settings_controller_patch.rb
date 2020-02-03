@@ -14,6 +14,8 @@ module TimeTaskOverrun
       module InstanceMethods
         #add columns run_time and total spend hours
         def plugin_ext
+          CustomImprovements.custom_check_box_project_create
+          CustomImprovements.custom_check_box_project_setting_off
           @plugin = Redmine::Plugin.find(params[:id])
           unless @plugin.configurable?
             render_404

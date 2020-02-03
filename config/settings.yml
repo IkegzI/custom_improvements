@@ -19,13 +19,13 @@
 # DO NOT MODIFY THIS FILE !!!
 # Settings can be defined through the application in Admin -> Settings
 
-improvements_disable_overrun: 1
-improvements_disable_status: 1
-improvements_disable_finish: 1
+improvements_disable_overrun: 0
+improvements_disable_status: 0
+improvements_disable_finish: 0
 improvements_disable_date: 0
 improvements_disable_on_tracker: 0
 improvements_disable_id_tracker: 0
 improvements_disable_custom_fields_check: 0
 improvements_disable_id_custom_fields_check: 0
 improvements_disable_wrong_write: 0
-improvements_disable_project_add_task: 1
+improvements_disable_project_add_task: 0
