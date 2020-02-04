@@ -33,7 +33,6 @@ module TimeTaskOverrun
                         value.to_s(item) { |other| link_to_issue(other, :subject => false, :tracker => false) }.html_safe,
                         :id => value.css_classes_for(item))
           when :hours, :estimated_hours
-            binding.pry
             format_hours(value.round(2)) if value.to_f.round(2) > 0
           when :spent_hours
             if Setting.plugin_custom_improvements['improvements_disable_overrun'].to_i == 0
