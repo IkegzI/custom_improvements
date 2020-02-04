@@ -33,22 +33,23 @@ module TimeTaskOverrun
                         value.to_s(item) { |other| link_to_issue(other, :subject => false, :tracker => false) }.html_safe,
                         :id => value.css_classes_for(item))
           when :hours, :estimated_hours
-            format_hours(value.round(2)) if value.to_f.round(2) > 0
+            format_hours(value.round(1)) if value.to_f.round(1) > 0
           when :spent_hours
             if Setting.plugin_custom_improvements['improvements_disable_overrun'].to_i == 0
-                        if item.estimated_hours.to_f > 0 && item.spent_hours.to_f > 0
+                        if item.estimated_hours.to_f.round(1) > 0 && item.spent_hours.to_f.round(1) > 0
                           link = project_time_entries_path(item.project, :issue_id => "~#{item.id}")
                           val = (
                           if (item.estimated_hours.nil? || item.spent_hours.nil?)
                             0
                           else
                             rez = (item.estimated_hours - item.spent_hours) * -1
-                            rez.round(3)
+                            rez.round(1)
                           end)
-                          link_to(format_hours(value), link) + (
+                          binding.pry
+                          link_to(format_hours(value.round(1)), link) + (
                               if val > 0
                                 # link_to('(' + (val > 0 ? '+' : '') + "#{format_hours(val).to_f.round(3)}" + ')', link, style: (val < 0 ? 'color:#00cc00' : 'color:#cc0000'))
-                                link_to(' (' + (val > 0 ? '+' : '') + "#{format_hours(val)}" + ')', link, style: 'color:#cc0000')
+                                link_to(' (' + (val > 0 ? '+' : '') + "#{format_hours(val.round(1))}" + ')', link, style: 'color:#cc0000')
                               end)
                         elsif item.spent_hours > 0
                           link = project_time_entries_path(item.project, :issue_id => "~#{item.id}")
