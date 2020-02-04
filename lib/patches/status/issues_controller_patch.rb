@@ -14,6 +14,12 @@ module Status
       module InstanceMethods
         #add columns run_time and spend hours
         def update_ext
+          if Setting.plugin_custom_improvements['improvements_disable_status'] == '0'
+            if @issue.status_id == 1
+              @issue.status_id = 2
+              @issue.save
+            end
+          end
           return unless update_issue_from_params
           @issue.save_attachments(params[:attachments] || (params[:issue] && params[:issue][:uploads]))
           saved = false
@@ -27,12 +33,7 @@ module Status
             end
           end
           if @time_entry
-            if Setting.plugin_custom_improvements['improvements_disable_status'] == '0'
-              if @issue.status_id == 1
-                @issue.status_id = 2
-                @issue.save
-              end
-            end
+
             if saved
               render_attachment_warning_if_needed(@issue)
               flash[:notice] = l(:notice_successful_update) unless @issue.current_journal.new_record?
