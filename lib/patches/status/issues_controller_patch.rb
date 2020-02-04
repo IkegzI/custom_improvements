@@ -15,7 +15,6 @@ module Status
         #add columns run_time and spend hours
         def update_ext
           if Setting.plugin_custom_improvements['improvements_disable_status'] == '0' and @time_entry
-            binding.pry
             if @issue.status_id == 1
               @issue.status_id = 2
               @issue.save
