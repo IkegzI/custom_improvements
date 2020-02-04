@@ -45,7 +45,6 @@ module TimeTaskOverrun
                             rez = (item.estimated_hours - item.spent_hours) * -1
                             rez.round(1)
                           end)
-                          binding.pry
                           link_to(format_hours(value.round(1)), link) + (
                               if val > 0
                                 # link_to('(' + (val > 0 ? '+' : '') + "#{format_hours(val).to_f.round(3)}" + ')', link, style: (val < 0 ? 'color:#00cc00' : 'color:#cc0000'))
