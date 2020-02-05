@@ -23,7 +23,7 @@ module Status
           end
           return unless update_issue_from_params
           @issue.save_attachments(params[:attachments] || (params[:issue] && params[:issue][:uploads]))
-          @issue.estimated_hours = @issue.estimated_hours.round(2)
+          @issue.estimated_hours = @issue.estimated_hours.round(2) unless @issue.estimated_hours.nil?
           if @issue.estimated_hours == 0
             flash[:error] = 'Введите оценку трудозатрат более 0.01 часов'
             @issue.estimated_hours = ''
