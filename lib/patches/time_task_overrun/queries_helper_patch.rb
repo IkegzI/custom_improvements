@@ -35,7 +35,6 @@ module TimeTaskOverrun
           when :hours, :estimated_hours
             format_hours(value.round(2)) if value.to_f > 0
           when :spent_hours
-            binding.pry
             if Setting.plugin_custom_improvements['improvements_disable_overrun'].to_i == 0
               if item.estimated_hours.to_f.round(2) > 0 && item.spent_hours.to_f.round(2) > 0
                           link = project_time_entries_path(item.project, :issue_id => "~#{item.id}")
