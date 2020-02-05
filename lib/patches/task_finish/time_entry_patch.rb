@@ -49,7 +49,6 @@ module TaskFinish
           end
 
           def errors_add_on_time_entry(hours, setting)
-            binding.pry
             if Setting.plugin_custom_improvements[setting] == '0'
               if hours < 0.01
                 return true

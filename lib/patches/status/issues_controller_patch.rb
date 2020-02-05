@@ -21,7 +21,6 @@ module Status
               @issue.save
             end
           end
-          binding.pry
           return unless update_issue_from_params
           @issue.save_attachments(params[:attachments] || (params[:issue] && params[:issue][:uploads]))
           @issue.estimated_hours = @issue.estimated_hours.round(2)
@@ -59,7 +58,6 @@ module Status
         end
 
         def create_ext
-          # binding.pry
           unless User.current.allowed_to?(:add_issues, @issue.project, :global => true)
             raise ::Unauthorized
           end
