@@ -32,7 +32,7 @@ Redmine::Plugin.register :custom_improvements do
     # Query.send(:include, TimeTaskOverrun::Patches::QueryPatch)
     # QueriesHelper.send(:include, TimeTaskOverrun::Patches::QueriesHelperPatch)
     TimelogController.send(:include, Status::Patches::TimelogControllerPatch)
-    IssuesController.send(:include, Status::Patches::IssuesControllerPatch)
+    # IssuesController.send(:include, Status::Patches::IssuesControllerPatch)
     TimeEntry.send(:include, TaskFinish::Patches::TimeEntryPatch)
   end
 
