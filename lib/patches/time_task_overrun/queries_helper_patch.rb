@@ -36,7 +36,6 @@ module TimeTaskOverrun
             format_hours(value.round(2)) if value.to_f > 0
           when :spent_hours
             if Setting.plugin_custom_improvements['improvements_disable_overrun'].to_i == 0
-              binding.pry
               if item.estimated_hours.to_f.round(2) > 0 && item.spent_hours.to_f.round(2) > 0
                           link = project_time_entries_path(item.project, :issue_id => "~#{item.id}")
                           val = (
@@ -46,7 +45,6 @@ module TimeTaskOverrun
                             (item.estimated_hours - item.spent_hours) * -1.00
                                                       end)
                             link_to(format_hours(value), link) + (
-                            binding.pry
 
                             if val > 0
                                 # link_to('(' + (val > 0 ? '+' : '') + "#{format_hours(val).to_f.round(3)}" + ')', link, style: (val < 0 ? 'color:#00cc00' : 'color:#cc0000'))
