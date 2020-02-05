@@ -1,4 +1,4 @@
-require_dependency 'custom_improvements'
+# require_dependency 'custom_improvements'
 Redmine::Plugin.register :custom_improvements do
   name 'SunStrike Redmine Custom Improvements'
   author 'Pecherskyi Alexei'
