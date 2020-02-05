@@ -27,12 +27,12 @@ Redmine::Plugin.register :custom_improvements do
     require_relative "#{path}/#{tor}/query_patch.rb"
     require_relative "#{path}/#{tor}/queries_helper_patch.rb"
     require_relative "#{path}/#{st}/time_entries_patch.rb"
-    require_relative "#{path}/#{st}/issues_controller_patch.rb"
+    # require_relative "#{path}/#{st}/issues_controller_patch.rb"
     require_relative "#{path}/#{tf}/time_entry_patch.rb"
     Query.send(:include, TimeTaskOverrun::Patches::QueryPatch)
     QueriesHelper.send(:include, TimeTaskOverrun::Patches::QueriesHelperPatch)
     TimelogController.send(:include, Status::Patches::TimelogControllerPatch)
-    IssuesController.send(:include, Status::Patches::IssuesControllerPatch)
+    # IssuesController.send(:include, Status::Patches::IssuesControllerPatch)
     TimeEntry.send(:include, TaskFinish::Patches::TimeEntryPatch)
   end
 
