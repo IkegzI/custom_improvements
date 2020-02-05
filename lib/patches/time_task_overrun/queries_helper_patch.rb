@@ -42,12 +42,11 @@ module TimeTaskOverrun
                           if (item.estimated_hours.nil? || item.spent_hours.nil?)
                             0
                           else
-                            (item.estimated_hours - item.spent_hours) * -1.00
+                            (item.estimated_hours.round(2) - item.spent_hours.round(2)).round(2) * -1.00
                                                       end)
                             link_to(format_hours(value), link) + (
 
-                            if val > 0
-                                # link_to('(' + (val > 0 ? '+' : '') + "#{format_hours(val).to_f.round(3)}" + ')', link, style: (val < 0 ? 'color:#00cc00' : 'color:#cc0000'))
+                            if val > 0.009
                                 link_to(' (' + (val > 0 ? '+' : '') + "#{format_hours(val.round(2))}" + ')', link, style: 'color:#cc0000')
                               end)
                         elsif item.spent_hours > 0
