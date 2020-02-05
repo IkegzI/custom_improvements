@@ -11,7 +11,7 @@ Redmine::Plugin.register :custom_improvements do
   ON_OFF_CONST = [['Включен', 0], ['Выключен', 1]]
   # improvements_disable_on_tracker: 0,
   #     improvements_disable_id_tracker: 0, improvements_disable_project_add_task: 0
-  default_settings = CustomImprovements.load_settings
+  # default_settings = CustomImprovements.load_settings
 
   # settings default: {params: default_settings}, partial: 'improvements/settings/custom_improvements'
   settings default: {'improvements_disable_overrun' => '1','improvements_disable_status' => '1', 'improvements_disable_finish' => '1', 'improvements_disable_date' => '0', 'improvements_disable_on_tracker' => '0', 'improvements_disable_id_tracker' => '0'}, partial: 'improvements/settings/custom_improvements'
