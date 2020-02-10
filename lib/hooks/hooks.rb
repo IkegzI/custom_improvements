@@ -22,15 +22,18 @@ module Hooks
       end
 
       def controller_issues_before_save_dry(data = {})
-        data[:issue].estimated_hours = data[:issue].estimated_hours.round(2) unless data[:issue].estimated_hours.nil?
-        data[:issue].save
+        unless data[:issue].estimated_hours.nil?
+          data[:issue].estimated_hours = data[:issue].estimated_hours.round(2)
+          data[:issue].save
+        end
       end
 
       def controller_issues_new_before_save(data = {})
-        controller_issues_before_save_dry(data[:issue])
+        controller_issues_before_save_dry(data)
       end
+
       def controller_issues_edit_before_save(data = {})
-        controller_issues_before_save_dry(data[:issue])
+        controller_issues_before_save_dry(data)
       end
 
     end
