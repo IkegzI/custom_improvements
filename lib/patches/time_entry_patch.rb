@@ -1,5 +1,5 @@
 require_dependency 'time_entry'
-module TaskFinish
+module CustomImprovements
   module Patches
     module TimeEntryPatch
       include Redmine::I18n
@@ -8,7 +8,7 @@ module TaskFinish
       def self.included(base)
         base.send(:include, InstanceMethods)
         base.class_eval do
-          alias_method :validate_time_entry, :validate_time_entry_ext
+          validate :validate_time_entry_ext, on: [:create, :update]
         end
       end
 
@@ -57,13 +57,9 @@ module TaskFinish
             false
           end
 
-          errors.add :base, :on_time_entry if errors_add_on_time_entry(hours, 'improvements_disable_overrun')
+          # errors.add :base, :on_time_entry if errors_add_on_time_entry(hours, 'improvements_disable_overrun')
           errors.add :issue_id, :is_finish if errors_add_issue_is_fihish?(issue, 'improvements_disable_finish')
           errors.add :spent_on, :date_arrived if errors_add_spent_on?(spent_on, 'improvements_disable_date')
-          errors.add :hours, :invalid if hours && (hours < 0 || hours >= 1000)
-          errors.add :project_id, :invalid if project.nil?
-          errors.add :issue_id, :invalid if (issue_id && !issue) || (issue && project != issue.project) || @invalid_issue_id
-          errors.add :activity_id, :inclusion if activity_id_changed? && project && !project.activities.include?(activity)
         end
       end
     end

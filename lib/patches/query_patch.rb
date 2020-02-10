@@ -1,5 +1,5 @@
 require_dependency 'query'
-module TimeTaskOverrun
+module CustomImprovements
   module Patches
     module QueryPatch
       include Redmine::I18n
