@@ -53,7 +53,7 @@ module CustomImprovements
                   link_to(' (' + (val > 0 ? '+' : '') + "#{format_hours(val.round(2))}" + ')', link, style: 'color:#cc0000')
                 end)
               elsif item.spent_hours.round(2) >= 0
-                link = "/projects/#{item.project.identifier}/time_entries?issue_id=~#{item.id}" # issue_time_entries_path(item.project, :issue_id => "~#{item.id}")#/projects/plugin_1/time_entries?issue_id=~6\
+                link = "/projects/#{item.project.identifier}/time_entries?issue_id=~#{item.id}"
                 link_to_if(item.spent_hours.round(2) > 0, format_hours(item.spent_hours.round(2)), link)
               end
             else

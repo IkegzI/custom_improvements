@@ -48,16 +48,6 @@ module CustomImprovements
             false
           end
 
-          def errors_add_on_time_entry(hours, setting)
-            if Setting.plugin_custom_improvements[setting] == '0'
-              if hours < 0.009
-                return true
-              end
-            end
-            false
-          end
-
-          # errors.add :base, :on_time_entry if errors_add_on_time_entry(hours, 'improvements_disable_overrun')
           errors.add :issue_id, :is_finish if errors_add_issue_is_fihish?(issue, 'improvements_disable_finish')
           errors.add :spent_on, :date_arrived if errors_add_spent_on?(spent_on, 'improvements_disable_date')
         end
@@ -65,3 +55,15 @@ module CustomImprovements
     end
   end
 end
+
+##on_time_entry > 0.00566666666666669 for print error
+# def errors_add_on_time_entry(hours, setting)
+#           #   if Setting.plugin_custom_improvements[setting] == '0'
+#           #     if hours < 0.00566666666666669
+#           #       return true
+#           #     end
+#           #   end
+#           #   false
+#           # end
+#
+#           # errors.add :base, :on_time_entry if errors_add_on_time_entry(hours, 'improvements_disable_overrun')
