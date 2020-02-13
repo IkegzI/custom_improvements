@@ -48,7 +48,6 @@ module CustomImprovements
           false
         end
 
-        binding.pry
         if hours.to_f > 0 and issue.status_id == 1
           issue.status_id = 2
         end
