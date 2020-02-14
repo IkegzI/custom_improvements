@@ -1,4 +1,4 @@
-require_relative "../custom_improvements.rb"
+require_relative "../../custom_improvements.rb"
 module Hooks
   include CustomImprovements
   module Status

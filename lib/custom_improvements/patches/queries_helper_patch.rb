@@ -8,14 +8,14 @@ module CustomImprovements
       def self.included(base)
         base.send(:include, InstanceMethods)
         base.class_eval do
-          alias_method :column_value, :column_value_ext
+          alias_method :column_value, :ci_column_value_ext
         end
       end
 
       #
       module InstanceMethods
         #data processing in the column spend_hours
-        def column_value_ext(column, item, value)
+        def ci_column_value_ext(column, item, value)
           case column.name
           when :id
             link_to value, issue_path(item)

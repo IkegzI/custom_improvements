@@ -9,12 +9,12 @@ module CustomImprovements
         base.class_eval do
           unloadable
 
-          validate :validate_time_entry_ext, on: [:create, :update]
+          validate :ci_time_entry, on: [:create, :update]
         end
       end
 
       #add columns run_time and total spend hours
-      def validate_time_entry_ext
+      def ci_time_entry
 
         def errors_add_spent_on?(arg, setting)
           if Setting.plugin_custom_improvements[setting] == '0'

@@ -7,13 +7,13 @@ module CustomImprovements
       def self.included(base)
         base.send(:include, InstanceMethods)
         base.class_eval do
-          alias_method :columns, :columns_ext
+          alias_method :columns, :ci_columns_ext
         end
       end
 
       module InstanceMethods
         #add columns run_time and spend hours
-        def columns_ext
+        def ci_columns_ext
           cols = (has_default_columns? ? default_columns_names : column_names).collect do |name|
             available_columns.find { |col| col.name == name }
           end.compact
