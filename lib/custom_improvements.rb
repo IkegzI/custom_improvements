@@ -6,6 +6,7 @@ module CustomImprovements
   require_relative "#{path}/query_patch.rb"
   require_relative "#{path}/queries_helper_patch.rb"
   require_relative "#{path}/time_entry_patch.rb"
+  require_relative "#{path}/issue_patch.rb"
   require_relative "../app/helpers/custom_improvements_helper.rb"
 
 
