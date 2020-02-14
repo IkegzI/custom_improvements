@@ -72,5 +72,30 @@
     Проверять сегодняшнюю дату, и запрещать вносить трек за тот день, который еще не наступил.
   </div>
 </div>
+<!--нельзя вносить больше, чем в estimate-->
+<div id="sunstrike_settnigs_div">
+  <div>
+    <div id="sunstrike_settnigs_title">
+      Запрещать трекать больше эстимейта для тикетов с выбранным трекером
+    </div>
+    <div id="sunstrike_settnigs_select">
+
+      <%= select_tag('settings[improvements_disable_on_tracker]',
+                     options_for_select(ON_OFF_CONST,
+                                        Setting.plugin_custom_improvements['improvements_disable_on_tracker'].to_i)) %>
+    </div>
+
+    <div id="sunstrike_settnigs_title">
+      Выберете трекер, по которому будет действовать настройка:
+    </div>
+
+    <div id="sunstrike_settnigs_select">
+      <%= select_tag('settings[improvements_disable_id_tracker]',
+                     options_for_select(CustomImprovements.options_select_tracker,
+                                        Setting.plugin_custom_improvements['improvements_disable_id_tracker'].to_i)) %>
+    </div>
+  </div>
+
+</div>
 
 
