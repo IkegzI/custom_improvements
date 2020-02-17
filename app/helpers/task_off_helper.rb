@@ -15,8 +15,7 @@ module TaskOffHelper
 
   def custom_check_box_project_create
     unless CustomField.where(type: 'ProjectCustomField').find_by(name: 'Запрещать создание тикетов')
-      cf = CustomField.create(
-          type: "ProjectCustomField",
+      cf = ProjectCustomField.create(
           name: "Запрещать создание тикетов",
           field_format: "bool",
           possible_values: nil,
