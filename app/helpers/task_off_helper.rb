@@ -39,7 +39,6 @@ module TaskOffHelper
 
       # Setting.plugin_custom_improvements['improvements_field_id_taboo_task'] = a.id.to_s
     end
-    binding.pry
     cf_id = Setting.plugin_custom_improvements['improvements_field_id_taboo_task'].to_i
     if cf_id > 0
       cf = CustomField.find(cf_id)
