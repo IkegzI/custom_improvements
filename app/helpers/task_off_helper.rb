@@ -14,7 +14,6 @@ module TaskOffHelper
   end
 
   def custom_check_box_project_create
-    binding.pry
     unless CustomField.where(type: 'ProjectCustomField').find_by(name: 'Запрещать создание тикетов')
       cf = CustomField.create(
           type: "ProjectCustomField",
@@ -38,6 +37,8 @@ module TaskOffHelper
               "edit_tag_style" => ""
           },
           description: "")
+      binding.pry
+
       # Setting.plugin_custom_improvements['improvements_field_id_taboo_task'] = a.id.to_s
     end
 
