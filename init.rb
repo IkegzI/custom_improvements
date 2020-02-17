@@ -11,11 +11,16 @@ Redmine::Plugin.register :custom_improvements do
 
   settings default: {'improvements_disable_overrun' => '1','improvements_disable_status' => '1', 'improvements_disable_finish' => '1', 'improvements_disable_date' => '0', 'improvements_disable_on_tracker' => '0', 'improvements_disable_id_tracker' => '0'}, partial: 'improvements/settings/custom_improvements'
 
+
 end
+
 
 ActionDispatch::Callbacks.to_prepare do
   Query.send(:include, CustomImprovements::Patches::QueryPatch)
   QueriesHelper.send(:include, CustomImprovements::Patches::QueriesHelperPatch)
   TimeEntry.send(:include, CustomImprovements::Patches::TimeEntryPatch)
   Issue.send(:include, CustomImprovements::Patches::IssuePatch)
+  IssuesController.send(:include, CustomImprovements::Patches::IssuesControllerPatch)
+  SettingsController.send(:include, CustomImprovements::Patches::SettingsControllerPatch)
+  ProjectsController.send(:include, CustomImprovements::Patches::ProjectsControllerPatch)
 end

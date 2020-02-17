@@ -1,0 +1,9 @@
+<!--Если в проекте запрещено создание тасков-->
+<% if Setting.plugin_custom_improvements['improvements_disable_project_add_task'] == '0' %>
+<% if check_add_task_off? %>
+<script type="text/javascript">
+    alert('Создание новых задач в данном проекте ограничено настройками проекта');
+    location.replace('<%= project_issues_path %>');
+</script>
+<% end %>
+<% end %>

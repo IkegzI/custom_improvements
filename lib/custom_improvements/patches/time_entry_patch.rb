@@ -51,6 +51,7 @@ module CustomImprovements
         if hours.to_f > 0 and issue.status_id == 1
           issue.status_id = 2
         end
+
         #нельзя вносить больше, чем в estimate
         errors.add :base, :on_tracker if errors_add_issue_on_tracker?(hours, issue, 'improvements_disable_on_tracker')
         

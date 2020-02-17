@@ -1,0 +1,13 @@
+<!--В проекте переключаем поле на да, для запрета создания тасков, если проектов-родителей меньше 2-->
+<% if Setting.plugin_custom_improvements['improvements_disable_project_add_task'] == '0' %>
+<% if check_project_level %>
+<script type="text/javascript">
+    $(document).ready(function () {
+        var field = 'project_custom_field_values_';
+        field = field + "<%= Setting.plugin_custom_improvements['improvements_field_id_taboo_task'] %>";
+        document.getElementById(field).value = 0;
+        }
+    )
+</script>
+<% end %>
+<% end %>

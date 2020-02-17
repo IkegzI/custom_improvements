@@ -1,5 +1,4 @@
 module CustomImprovements
-
   require_dependency 'custom_improvements/hooks/hooks'
 
   path = './custom_improvements/patches/'
@@ -7,6 +6,8 @@ module CustomImprovements
   require_relative "#{path}/queries_helper_patch.rb"
   require_relative "#{path}/time_entry_patch.rb"
   require_relative "#{path}/issue_patch.rb"
+  require_relative "#{path}/issues_controller_patch.rb"
+  require_relative "#{path}/settings_controller_patch.rb"
   require_relative "../app/helpers/custom_improvements_helper.rb"
 
 
@@ -19,6 +20,9 @@ module CustomImprovements
     def options_select_tracker
       Tracker.all.map { |item| [item.name, item.id] }
     end
+
+    
+    
 
   end
 
