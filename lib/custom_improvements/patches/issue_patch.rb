@@ -9,6 +9,7 @@ module CustomImprovements
         base.send(:include, InstanceMethods)
         base.class_eval do
           validate :ci_issue_validate, on: [:create, :update]
+          validate :ci_issue_validate_update, on: [:create]
 
         end
       end
@@ -17,6 +18,30 @@ module CustomImprovements
       # improvements_disable_id_custom_fields_check: 0
       module InstanceMethods
 
+        def ci_issue_validate_update
+          # Запрещать создание тикетов в данном проекте
+          if Setting.plugin_custom_improvements['improvements_disable_project_add_task'] == '0'
+
+            def check_error_taboo_task
+
+              check = false
+              status_field = Setting.plugin_custom_improvements['improvements_disable_project_add_task'].to_i
+              check_field_id = Setting.plugin_custom_improvements['improvements_field_id_taboo_task'].to_i
+              if status_field == 0
+                project.custom_field_values.each do |item|
+                  if item.custom_field.id == check_field_id
+                    check = true if item.value == '1'
+                  end
+                end
+              end
+              check
+            end
+
+            errors.add :base, :taboo_task if check_error_taboo_task
+          end
+
+          # /Запрещать создание тикетов в данном проекте
+        end
 
         def ci_issue_validate
 
@@ -41,28 +66,28 @@ module CustomImprovements
           end
 #/Запрещать создание сдельных задач без эстимейта
 #
-# Запрещать создание тикетов в данном проекте
-          if Setting.plugin_custom_improvements['improvements_disable_project_add_task'] == '0'
-
-            def check_error_taboo_task
-
-              check = false
-              status_field = Setting.plugin_custom_improvements['improvements_disable_project_add_task'].to_i
-              check_field_id = Setting.plugin_custom_improvements['improvements_field_id_taboo_task'].to_i
-              if status_field == 0
-                project.custom_field_values.each do |item|
-                  if item.custom_field.id == check_field_id
-                    check = true if item.value == '1'
-                  end
-                end
-              end
-              check
-            end
-
-            errors.add :base, :taboo_task if check_error_taboo_task
-          end
-
-# /Запрещать создание тикетов в данном проекте
+# # Запрещать создание тикетов в данном проекте
+#           if Setting.plugin_custom_improvements['improvements_disable_project_add_task'] == '0'
+#
+#             def check_error_taboo_task
+#
+#               check = false
+#               status_field = Setting.plugin_custom_improvements['improvements_disable_project_add_task'].to_i
+#               check_field_id = Setting.plugin_custom_improvements['improvements_field_id_taboo_task'].to_i
+#               if status_field == 0
+#                 project.custom_field_values.each do |item|
+#                   if item.custom_field.id == check_field_id
+#                     check = true if item.value == '1'
+#                   end
+#                 end
+#               end
+#               check
+#             end
+#
+#             errors.add :base, :taboo_task if check_error_taboo_task
+#           end
+#
+# # /Запрещать создание тикетов в данном проекте
 
         end
       end
