@@ -33,11 +33,11 @@ module Hooks
         end
       end
 
-      def controller_issues_new_before_save(data = {})
+      def controller_issues_new_after_save(data = {})
         controller_issues_before_save_dry(data)
       end
 
-      def controller_issues_edit_before_save(data = {})
+      def controller_issues_edit_after_save(data = {})
         controller_issues_before_save_dry(data)
       end
 
