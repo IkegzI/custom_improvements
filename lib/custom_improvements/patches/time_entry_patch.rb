@@ -40,7 +40,6 @@ module CustomImprovements
         end
 
         def errors_add_issue_on_tracker?(hours, arg, setting)
-          binding.pry
           if Setting.plugin_custom_improvements[setting] == '0'
             if arg.tracker_id == Setting.plugin_custom_improvements['improvements_disable_id_tracker'].to_i
               return true if arg.estimated_hours.to_i < arg.spent_hours.to_i + hours.to_i
