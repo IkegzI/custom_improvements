@@ -17,11 +17,11 @@ module CustomImprovements
       def ci_time_entry
 
         def valide_time_entry_chande_status
-          if errors.messages.size == 0
+
             if issue.status_id == 1
-              issue.update(status_id: 2)
+              issue.update(status: IssueStatus.find(2))
             end
-          end
+          true
         end
 
         def errors_add_spent_on?(arg, setting)
@@ -56,15 +56,12 @@ module CustomImprovements
           false
         end
 
-        if hours.to_f > 0 and issue.status_id == 1
-          issue.status_id = 2
-        end
-
         #нельзя вносить больше, чем в estimate
         errors.add :base, :on_tracker if errors_add_issue_on_tracker?(hours, issue, 'improvements_disable_on_tracker')
         errors.add :issue_id, :is_finish if errors_add_issue_is_fihish?(issue, 'improvements_disable_finish')
         errors.add :spent_on, :date_arrived if errors_add_spent_on?(spent_on, 'improvements_disable_date')
-        valide_time_entry_chande_status
+        #автосмена статуса
+        valide_time_entry_chande_status if errors.messages.size == 0
       end
     end
   end
