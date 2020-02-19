@@ -16,6 +16,15 @@ module CustomImprovements
       #add columns run_time and total spend hours
       def ci_time_entry
 
+        def valide_time_entry_chande_status
+          binding.pry
+          if errors.messages.size == 0
+            if issue.status_id == 1
+              issue.update(status_id: 2)
+            end
+          end
+        end
+
         def errors_add_spent_on?(arg, setting)
           if Setting.plugin_custom_improvements[setting] == '0'
             i = 0
@@ -54,9 +63,9 @@ module CustomImprovements
 
         #нельзя вносить больше, чем в estimate
         errors.add :base, :on_tracker if errors_add_issue_on_tracker?(hours, issue, 'improvements_disable_on_tracker')
-        
         errors.add :issue_id, :is_finish if errors_add_issue_is_fihish?(issue, 'improvements_disable_finish')
         errors.add :spent_on, :date_arrived if errors_add_spent_on?(spent_on, 'improvements_disable_date')
+        valide_time_entry_chande_status
       end
     end
   end
