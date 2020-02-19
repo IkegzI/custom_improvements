@@ -17,7 +17,6 @@ module CustomImprovements
       def ci_time_entry
 
         def valide_time_entry_chande_status
-          binding.pry
           if errors.messages.size == 0
             if issue.status_id == 1
               issue.update(status_id: 2)
