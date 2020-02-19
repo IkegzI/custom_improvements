@@ -4,10 +4,13 @@ module CustomImprovements
     module QueryPatch
       include Redmine::I18n
       include CustomImprovements
+
       def self.included(base)
         base.send(:include, InstanceMethods)
         base.class_eval do
           alias_method :columns, :ci_columns_ext
+          #Для отображения только открытых проектов
+          alias_method :all_projects, :ci_all_projects
         end
       end
 
@@ -24,6 +27,16 @@ module CustomImprovements
           end
           (available_columns.select(&:frozen?) | cols).compact
         end
+
+#Для отображения только открытых проектов
+        def ci_all_projects
+          if Setting.plugin_custom_improvements['improvements_disable_filter_open'] == '0'
+            @all_projects ||= Project.visible_open.to_a
+          else
+            @all_projects ||= Project.visible.to_a
+          end
+        end
+
       end
     end
   end

@@ -1,5 +1,3 @@
-
-
 <%= stylesheet_link_tag "improvements", plugin: "custom_improvements" %>
 <h3>Настройка</h3>
 
@@ -146,4 +144,22 @@
     Заперт создания тикетов в проектах, где это указано.
   </div>
   <%= hidden_field_tag 'settings[improvements_field_id_taboo_task]', custom_check_box_project_create %>
+</div>
+
+<div id="sunstrike_settnigs_div">
+  <div>
+    <div id="sunstrike_settnigs_title">
+      В списке фильтра отображать только открытые проекты
+    </div>
+    <div id="sunstrike_settnigs_select">
+
+      <%= select_tag('settings[improvements_disable_filter_open]',
+                     options_for_select(ON_OFF_CONST,
+                                        Setting.plugin_custom_improvements['improvements_disable_filter_open'].to_i)) %>
+    </div>
+  </div>
+  <div>
+    <h4 id="sunstrike_settnigs_h4">Описание: </h4>
+    список в фильтре по проектам содержит только открытые проекты
+  </div>
 </div>

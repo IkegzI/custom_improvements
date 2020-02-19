@@ -17,6 +17,8 @@ end
 
 ActionDispatch::Callbacks.to_prepare do
   Query.send(:include, CustomImprovements::Patches::QueryPatch)
+  Project.send(:include, CustomImprovements::Patches::ProjectPatch)
+  # QueriesController.send(:include, CustomImprovements::Patches::QueriesControllerPatch)
   QueriesHelper.send(:include, CustomImprovements::Patches::QueriesHelperPatch)
   TimeEntry.send(:include, CustomImprovements::Patches::TimeEntryPatch)
   Issue.send(:include, CustomImprovements::Patches::IssuePatch)

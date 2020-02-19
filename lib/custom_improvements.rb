@@ -2,8 +2,10 @@ module CustomImprovements
   require_dependency 'custom_improvements/hooks/hooks'
 
   path = './custom_improvements/patches/'
+  require_relative "#{path}/project_patch.rb"
   require_relative "#{path}/query_patch.rb"
   require_relative "#{path}/queries_helper_patch.rb"
+  require_relative "#{path}/queries_controller_patch.rb"
   require_relative "#{path}/time_entry_patch.rb"
   require_relative "#{path}/issue_patch.rb"
   require_relative "#{path}/issues_controller_patch.rb"
