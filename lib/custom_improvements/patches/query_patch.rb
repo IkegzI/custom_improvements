@@ -30,7 +30,6 @@ module CustomImprovements
 
 #Для отображения только открытых проектов
         def ci_all_projects
-          binding.pry
           if Setting.plugin_custom_improvements['improvements_disable_filter_open'] == '0'
             @all_projects ||= Project.visible_open.to_a
           else
