@@ -18,12 +18,9 @@ module CustomImprovements
 
         def valide_time_entry_chande_status
             if issue.status_id == 1
-
               issue.update(status: IssueStatus.find(2))
               issue.save validate: false
-              binding.pry
             end
-            binding.pry
         end
 
         def errors_add_spent_on?(arg, setting)
@@ -63,7 +60,6 @@ module CustomImprovements
         errors.add :issue_id, :is_finish if errors_add_issue_is_fihish?(issue, 'improvements_disable_finish')
         errors.add :spent_on, :date_arrived if errors_add_spent_on?(spent_on, 'improvements_disable_date')
         #автосмена статуса
-        binding.pry
         valide_time_entry_chande_status if errors.messages.size == 0
       end
     end
