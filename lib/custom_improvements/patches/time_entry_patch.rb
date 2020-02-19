@@ -20,6 +20,7 @@ module CustomImprovements
             if issue.status_id == 1
 
               issue.update(status: IssueStatus.find(2))
+              issue.save validate: false
               binding.pry
             end
             binding.pry
