@@ -19,7 +19,7 @@ module CustomImprovements
         def valide_time_entry_chande_status
             if issue.status_id == 1
 
-              issue.update(status_id: IssueStatus.find(2).id)
+              issue.update(status: IssueStatus.find(2))
               binding.pry
             end
             binding.pry
