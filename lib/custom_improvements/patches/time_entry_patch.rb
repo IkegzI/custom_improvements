@@ -20,7 +20,7 @@ module CustomImprovements
           if Setting.plugin_custom_improvements['improvements_disable_finish'] == '0'
             if Issue.find(issue).status_id == 1 and issue.status_id == 1
               issue.update(status: IssueStatus.find(2))
-              issue.save validate: false
+              # issue.save validate: false
             end
           end
         end
