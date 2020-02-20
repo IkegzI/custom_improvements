@@ -7,8 +7,6 @@ module CustomImprovements
 
       def self.included(base)
         base.class_eval do
-          unloadable
-
           validate :ci_time_entry, on: [:create, :update]
         end
       end
@@ -17,7 +15,7 @@ module CustomImprovements
       def ci_time_entry
 
         def valide_time_entry_chande_status
-          if Setting.plugin_custom_improvements['improvements_disable_finish'] == '0'
+          if Setting.plugin_custom_improvements['improvements_disable_status'] == '0'
             if Issue.find(issue).status_id == 1 and issue.status_id == 1
               issue.update(status: IssueStatus.find(2))
               # issue.save validate: false
