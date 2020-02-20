@@ -17,7 +17,7 @@ module CustomImprovements
       def ci_time_entry
 
         def valide_time_entry_chande_status
-            if issue.status_id == 1
+            if Issue.find(issue).status_id == 1
               issue.update(status: IssueStatus.find(2))
               issue.save validate: false
             end
