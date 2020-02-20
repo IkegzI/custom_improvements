@@ -17,7 +17,6 @@ module CustomImprovements
       def ci_time_entry
 
         def valide_time_entry_chande_status
-          binding.pry
           if Setting.plugin_custom_improvements['improvements_disable_finish'] == '0'
             if Issue.find(issue).status_id == 1 and issue.status_id == 1
               issue.update(status: IssueStatus.find(2))
