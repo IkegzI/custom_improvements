@@ -17,10 +17,13 @@ module CustomImprovements
       def ci_time_entry
 
         def valide_time_entry_chande_status
-            if Issue.find(issue).status_id == 1
+          binding.pry
+          if Setting.plugin_custom_improvements['improvements_disable_finish'] == '0'
+            if Issue.find(issue).status_id == 1 and issue.status_id == 1
               issue.update(status: IssueStatus.find(2))
               issue.save validate: false
             end
+          end
         end
 
         def errors_add_spent_on?(arg, setting)
@@ -66,4 +69,4 @@ module CustomImprovements
   end
 end
 
-     # errors.add :base, :on_time_entry if errors_add_on_time_entry(hours, 'improvements_disable_overrun')
+# errors.add :base, :on_time_entry if errors_add_on_time_entry(hours, 'improvements_disable_overrun')
