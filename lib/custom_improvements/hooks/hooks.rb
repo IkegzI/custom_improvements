@@ -16,7 +16,7 @@ module Hooks
       def controller_issues_before_save_dry(data = {})
         unless data[:issue].estimated_hours.nil?
           data[:issue].estimated_hours = data[:issue].estimated_hours.round(2)
-          data[:issue].save
+          #data[:issue].save
         end
       end
 
