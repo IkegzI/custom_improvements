@@ -20,12 +20,13 @@ module CustomImprovements
     end
 
     def options_select_tracker
-      Tracker.all.map { |item| [item.name, item.id] }
+      Tracker.all.map { |item| [item.name, item.id] } - list_add_tracker
     end
 
-    
-    
+    def list_add_tracker
+      TrackerCheck.all.map { |item| [item.tracker.name, item.tracker_id] }
+    end
+
 
   end
-
 end

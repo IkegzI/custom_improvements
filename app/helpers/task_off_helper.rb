@@ -1,5 +1,17 @@
 module TaskOffHelper
 
+
+  def list_add_tracker
+    # binding.pry
+    if Setting.plugin_custom_improvements['improvements_disable_id_tracker'].class.to_s == 'Array'
+      Setting.plugin_custom_improvements['improvements_disable_id_tracker'].map { |item| [item, Tracker.find(item.id)] }
+    end
+  end
+
+  def array_new_data
+    # Setting.plugin_custom_improvements['improvements_disable_id_tracker'] = Setting.plugin_custom_improvements['improvements_disable_id_tracker'].to_a
+  end
+
   def check_add_task_off?
     check = false
     cf_id = Setting.plugin_custom_improvements['improvements_field_id_taboo_task'].to_i
