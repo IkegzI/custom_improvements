@@ -2,7 +2,6 @@ module TaskOffHelper
 
 
   def list_add_tracker
-    # binding.pry
     if Setting.plugin_custom_improvements['improvements_disable_id_tracker'].class.to_s == 'Array'
       Setting.plugin_custom_improvements['improvements_disable_id_tracker'].map { |item| [item, Tracker.find(item.id)] }
     end
