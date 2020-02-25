@@ -51,7 +51,6 @@ module CustomImprovements
           field_id = Setting.plugin_custom_improvements['improvements_disable_id_custom_fields_check'].to_i
           issue.custom_field_values.each do |item|
             if field_id == item.custom_field.id
-              binding.pry
               field_value = item.value
             end
           end
