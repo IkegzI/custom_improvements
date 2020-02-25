@@ -48,9 +48,10 @@ module CustomImprovements
         def errors_add_issue_on_tracker?(hours, arg, setting)
           check = false
           if arg and arg.status_id < 5
-          if Setting.plugin_custom_improvements[setting] == '0'
-            if TrackerCheck.where(tracker_id: arg.tracker_id).size > 0
-              check = true if arg.estimated_hours.to_i < arg.spent_hours.to_i + hours.to_i
+            if Setting.plugin_custom_improvements[setting] == '0'
+              if TrackerCheck.where(tracker_id: arg.tracker_id).size > 0
+                check = true if arg.estimated_hours.to_i < arg.spent_hours.to_i + hours.to_i
+              end
             end
           end
           check
