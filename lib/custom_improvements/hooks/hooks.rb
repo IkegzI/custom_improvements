@@ -17,6 +17,14 @@ module Hooks
         unless data[:issue].estimated_hours.nil?
           data[:issue].estimated_hours = data[:issue].estimated_hours.round(2)
         end
+        # binding.pry
+        # if data[:time_entry]
+        #   unless data[:time_entry].validate
+        #     if data[:issue].status_id == 1
+        #       data[:issue].status_id = 2
+        #     end
+        #   end
+        # end
       end
 
       def controller_issues_new_before_save(data = {})
@@ -29,17 +37,16 @@ module Hooks
 
       def controller_timelog_edit_before_save(data = {})
         data[:time_entry].hours = data[:time_entry].hours.round(2)
-        binding.pry
 
-      end
-
-
-      def controller_issues_edit_after_save(data = {})
-        unless data[:time_entry].nil?
-          if data[:issue].status_id == 1
-            Issue.find(data[:issue].id).update(status_id: 2)
-          end
-        end
+        # if data[:time_entry]
+        #   unless data[:time_entry].validate
+        #     if data[:issue].status_id == 1
+        #       binding.pry
+        #
+        #       data[:issue].status_id = 2
+        #     end
+        #   end
+        # end
       end
 
     end
