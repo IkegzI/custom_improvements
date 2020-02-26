@@ -11,6 +11,7 @@ module CustomImprovements
           alias_method :columns, :ci_columns_ext
           #Для отображения только открытых проектов
           alias_method :all_projects, :ci_all_projects
+          alias_method :subproject_values, :ci_subproject_filter
         end
       end
 
@@ -34,6 +35,14 @@ module CustomImprovements
             @all_projects ||= Project.visible_open.to_a
           else
             @all_projects ||= Project.visible.to_a
+          end
+        end
+
+        def ci_subproject_filter
+          if Setting.plugin_custom_improvements['improvements_disable_filter_open'] == '0'
+            project.descendants.visible.where(status: 1).collect { |s| [s.name, s.id.to_s] }
+          else
+            project.descendants.visible.collect { |s| [s.name, s.id.to_s] }
           end
         end
 
