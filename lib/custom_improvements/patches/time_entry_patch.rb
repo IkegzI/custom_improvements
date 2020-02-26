@@ -17,7 +17,7 @@ module CustomImprovements
         def valide_time_entry_chande_status
           if Setting.plugin_custom_improvements['improvements_disable_status'] == '0'
             if Issue.find(issue).status_id == 1 and issue.status_id == 1
-              issue.update(status_id: 2)
+              # issue.update(status_id: 2)
               # issue.update(status_id: IssueStatus.find(2))
             end
           end
