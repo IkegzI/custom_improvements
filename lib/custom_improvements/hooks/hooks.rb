@@ -17,14 +17,13 @@ module Hooks
         unless data[:issue].estimated_hours.nil?
           data[:issue].estimated_hours = data[:issue].estimated_hours.round(2)
         end
-        # binding.pry
-        # if data[:time_entry]
-        #   unless data[:time_entry].validate
-        #     if data[:issue].status_id == 1
-        #       data[:issue].status_id = 2
-        #     end
-        #   end
-        # end
+        if data[:time_entry]
+          unless data[:time_entry].validate
+            if data[:issue].status_id == 1
+              data[:issue].status_id = 2
+            end
+          end
+        end
       end
 
       def controller_issues_new_before_save(data = {})
