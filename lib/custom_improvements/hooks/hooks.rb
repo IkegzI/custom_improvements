@@ -29,6 +29,17 @@ module Hooks
 
       def controller_timelog_edit_before_save(data = {})
         data[:time_entry].hours = data[:time_entry].hours.round(2)
+        binding.pry
+
+      end
+
+
+      def controller_issues_edit_after_save(data = {})
+        unless data[:time_entry].nil?
+          if data[:issue].status_id == 1
+            Issue.find(data[:issue].id).update(status_id: 2)
+          end
+        end
       end
 
     end
