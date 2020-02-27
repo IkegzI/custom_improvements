@@ -62,7 +62,6 @@ module CustomImprovements
                 end
               end
             end
-          end
           check
         end
 
