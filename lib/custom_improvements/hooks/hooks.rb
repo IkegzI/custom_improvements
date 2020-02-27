@@ -46,6 +46,7 @@ module Hooks
             if data[:time_entry].validate
               if data[:time_entry].issue.status_id == 1
                 data[:time_entry].issue.status_id = 2
+                data[:time_entry].issue.save
                 binding.pry
               end
             end
