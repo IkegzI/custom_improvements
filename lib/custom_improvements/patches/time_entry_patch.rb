@@ -48,7 +48,7 @@ module CustomImprovements
 
         def errors_add_issue_on_tracker?(hours, arg, setting)
           check = false
-          field_value = 0
+          field_value = nil
           field_id = Setting.plugin_custom_improvements['improvements_disable_id_custom_fields_check'].to_i
           issue.custom_field_values.each do |item|
             if field_id == item.custom_field.id
@@ -57,8 +57,7 @@ module CustomImprovements
           end
           if arg.status_id < 5
             if Setting.plugin_custom_improvements[setting] == '0'
-              if TrackerCheck.where(tracker_id: arg.tracker_id).size > 0
-                unless field_value.to_i == 0
+              if TrackerCheck.where(tracker_id: arg.tracker_id).size > 0 and (field_value == '1' or field_value.nil?)
                   check = true if arg.estimated_hours.to_f.round(2) < arg.spent_hours.to_f.round(2) + hours.to_f.round(2)
                 end
               end
