@@ -17,8 +17,8 @@ module CustomImprovements
         def valide_time_entry_chande_status
           # if Setting.plugin_custom_improvements['improvements_disable_status'] == '0'
           #   if Issue.find(issue).status_id == 1 and issue.status_id == 1
-              # issue.update(status_id: 2)
-              # issue.update(status_id: IssueStatus.find(2))
+          # issue.update(status_id: 2)
+          # issue.update(status_id: IssueStatus.find(2))
           #   end
           # end
         end
@@ -55,10 +55,12 @@ module CustomImprovements
               field_value = item.value
             end
           end
-          if arg.status_id < 5 and field_value != "0"
+          if arg.status_id < 5
             if Setting.plugin_custom_improvements[setting] == '0'
               if TrackerCheck.where(tracker_id: arg.tracker_id).size > 0
-                check = true if arg.estimated_hours.to_f.round(2) < arg.spent_hours.to_f.round(2) + hours.to_f.round(2)
+                unless field_value.to_i == 0
+                  check = true if arg.estimated_hours.to_f.round(2) < arg.spent_hours.to_f.round(2) + hours.to_f.round(2)
+                end
               end
             end
           end
