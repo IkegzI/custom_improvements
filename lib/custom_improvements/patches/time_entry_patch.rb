@@ -55,10 +55,9 @@ module CustomImprovements
               field_value = item.value
             end
           end
-          binding.pry
           if arg.status_id < 5
             if Setting.plugin_custom_improvements[setting] == '0'
-              if (TrackerCheck.where(tracker_id: arg.tracker_id).size > 0 and field_value == '1') or field_value == '1'
+              if (TrackerCheck.where(tracker_id: arg.tracker_id).size > 0 and (field_value == '1' or field_value.nil?)) or field_value == '1'
                   check = true if arg.estimated_hours.to_f.round(2) < arg.spent_hours.to_f.round(2) + hours.to_f.round(2)
                 end
               end
