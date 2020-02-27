@@ -17,7 +17,7 @@ module Hooks
         unless data[:issue].estimated_hours.nil?
           data[:issue].estimated_hours = data[:issue].estimated_hours.round(2)
         end
-        
+
         if Setting.plugin_custom_improvements['improvements_disable_status'] == '0'
           if data[:time_entry]
             if data[:time_entry].validate
@@ -45,7 +45,6 @@ module Hooks
           if data[:time_entry]
             if data[:time_entry].validate
               if data[:time_entry].issue.status_id == 1
-                binding.pry
                 data[:time_entry].issue.update(status_id: 2)
               end
             end
