@@ -20,7 +20,6 @@ module Hooks
 
         if Setting.plugin_custom_improvements['improvements_disable_status'] == '0'
           if data[:time_entry]
-            binding.pry
             if data[:time_entry].validate
               if data[:issue].status_id == 1
                 data[:issue].status_id = 2
