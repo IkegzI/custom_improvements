@@ -20,6 +20,7 @@ module Hooks
 
         if Setting.plugin_custom_improvements['improvements_disable_status'] == '0'
           if data[:time_entry]
+            binding.pry
             if data[:time_entry].validate
               if data[:issue].status_id == 1
                 data[:issue].status_id = 2
@@ -41,16 +42,16 @@ module Hooks
       def controller_timelog_edit_before_save(data = {})
         data[:time_entry].hours = data[:time_entry].hours.round(2)
 
-        if Setting.plugin_custom_improvements['improvements_disable_status'] == '0'
-          if data[:time_entry]
-            if data[:time_entry].validate
-              if data[:time_entry].issue.status_id == 1
-                data[:time_entry].issue.status_id = 2
-                data[:time_entry].issue.save
-              end
-            end
-          end
-        end
+        # if Setting.plugin_custom_improvements['improvements_disable_status'] == '0'
+        #   if data[:time_entry]
+        #     if data[:time_entry].validate
+        #       if data[:time_entry].issue.status_id == 1
+        #         data[:time_entry].issue.status_id = 2
+        #         data[:time_entry].issue.save
+        #       end
+        #     end
+        #   end
+        # end
 
       end
 
