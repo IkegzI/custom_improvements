@@ -39,7 +39,9 @@ module Hooks
       end
 
       def controller_timelog_edit_before_save(data = {})
-        data[:time_entry].hours = data[:time_entry].hours.round(2)
+        unless data[:issue].estimated_hours.nil?
+          data[:time_entry].hours = data[:time_entry].hours.round(2)
+        end
 
         if Setting.plugin_custom_improvements['improvements_disable_status'] == '0'
           if data[:time_entry]
