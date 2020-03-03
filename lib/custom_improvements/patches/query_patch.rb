@@ -39,7 +39,6 @@ module CustomImprovements
         end
 
         def ci_subproject_filter
-          binding.pry
           arr = []
           if Setting.plugin_custom_improvements['improvements_disable_filter_open'] == '0'
             arr = project.descendants.visible.where(status: 1).collect { |s| [s.name, s.id.to_s] }
