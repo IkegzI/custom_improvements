@@ -39,7 +39,7 @@ module Hooks
       end
 
       def controller_timelog_edit_before_save(data = {})
-        unless data[:issue].estimated_hours.nil?
+        unless data[:time_entry].hours.nil?
           data[:time_entry].hours = data[:time_entry].hours.round(2)
         end
 
